@@ -14,13 +14,13 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 
-class Icons(val location: Int, val function: String) {}
+class IconsForGame(val location: Int, val function: String) {}
 
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun createIcons(
-    icons: List<Icons>,
+    icons: List<IconsForGame>,
     navController: NavController,
     sharedViewModel: SharedViewModel,
     mod: Modifier
@@ -50,7 +50,7 @@ fun createIcons(
                     print("BrickShoot")
                     navController.navigate(Screen.GameScreen.route)
                 } else if (item.function == "Settings") {
-                    //#TODO
+                    navController.navigate(Screen.GameSettingScreen.route)
                 }
             }) {
                 Image(

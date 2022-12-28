@@ -75,10 +75,10 @@ fun GameScreen(navController: NavController, sharedViewModel: SharedViewModel) {
 
         createIcons(
             icons =
-            listOf(Icons(R.drawable.icon_shot_make, "MakeShot"),
-                Icons(R.drawable.icon_settings, "Settings"),
-                Icons(R.drawable.icon_home, "Home"),
-                Icons(R.drawable.icon_miss, "MissShot"),
+            listOf(IconsForGame(R.drawable.icon_shot_make, "MakeShot"),
+                IconsForGame(R.drawable.icon_settings, "Settings"),
+                IconsForGame(R.drawable.icon_home, "Home"),
+                IconsForGame(R.drawable.icon_miss, "MissShot"),
 
             ), navController = navController, sharedViewModel = sharedViewModel,
             Modifier

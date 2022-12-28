@@ -19,7 +19,9 @@ fun Navigation() {
             GameScreen(navController,sharedViewModel )
 
         }
-
+        composable(route = Screen.GameSettingScreen.route){
+            Settings(navController = navController, sharedViewModel = sharedViewModel)
+        }
 
 //        composable(route = Screen.CreateNote.route) {
 //            CreateNote(navController)
