@@ -16,7 +16,7 @@ fun Navigation() {
 
     NavHost(navController = navController, startDestination = Screen.GameScreen.route) {
         composable(route = Screen.GameScreen.route) {
-            GameScreen(navController,sharedViewModel )
+            GameScreenTopBar(navController,sharedViewModel )
 
         }
         composable(route = Screen.GameSettingScreen.route){

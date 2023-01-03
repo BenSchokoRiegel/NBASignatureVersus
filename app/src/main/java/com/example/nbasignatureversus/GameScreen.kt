@@ -41,6 +41,7 @@ import coil.decode.GifDecoder
 import coil.decode.ImageDecoderDecoder
 import coil.request.ImageRequest
 import coil.size.Size
+import com.example.nbasignatureversus.ui.theme.NBASIgnatureVersusTheme
 import org.w3c.dom.Text
 import java.io.BufferedReader
 
@@ -49,6 +50,35 @@ val fontname = FontFamily(Font(R.font.android))
 val fon2 = FontFamily(Font(R.font.ankhsanctuary))
 
 val topScreenHide = 10
+
+
+
+
+
+
+@Composable
+fun GameScreenTopBar(navController: NavController, sharedViewModel: SharedViewModel){
+    NBASIgnatureVersusTheme(darkTheme = false) {
+        // A surface container using the 'background' color from the theme
+        Scaffold(
+            topBar = { Topbar(sharedViewModel.currentGif.color, " GAME TIME ") },
+            // bottomBar = { BottomAppBar(backgroundColor = Color.Red) { Text("Click FloatingAction to add Random elements ") } },
+            // floatingActionButton = {
+            //FloatingActionButton(onClick = { navController.navigate(Screen.CreateNote.route) }
+
+        ) {
+            GameScreen(navController = navController, sharedViewModel = sharedViewModel)
+        }
+    }
+
+
+}
+
+
+
+
+
+
 
 @Composable
 fun GameScreen(navController: NavController, sharedViewModel: SharedViewModel) {
