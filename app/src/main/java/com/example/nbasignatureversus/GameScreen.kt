@@ -58,6 +58,7 @@ val topScreenHide = 10
 
 @Composable
 fun GameScreenTopBar(navController: NavController, sharedViewModel: SharedViewModel){
+    sharedViewModel.gameScore.hasStarted = true
     NBASIgnatureVersusTheme(darkTheme = false) {
         // A surface container using the 'background' color from the theme
         Scaffold(
@@ -106,7 +107,7 @@ fun GameScreen(navController: NavController, sharedViewModel: SharedViewModel) {
         createIcons(
             icons =
             listOf(IconsForGame(R.drawable.icon_shot_make, "MakeShot"),
-                IconsForGame(R.drawable.icon_settings, "Settings"),
+                IconsForGame(R.drawable.icon_pause, "Pause"),
                 IconsForGame(R.drawable.icon_home, "Home"),
                 IconsForGame(R.drawable.icon_miss, "MissShot"),
 

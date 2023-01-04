@@ -56,28 +56,42 @@ fun Settings(navController: NavController, sharedViewModel: SharedViewModel) {
         Scaffold(
             topBar = { Topbar("#db711e".color, " Settings ") },
             bottomBar = {
-                BottomNavigation(
-                    navController,
-                    items =
-                    listOf(
-                        IconsForGame(R.drawable.icon_home, "Home"),
-                        IconsForGame(R.drawable.icon_start, "Start"),
-                        IconsForGame(R.drawable.icon_save, "Save"),
+                if (!sharedViewModel.gameScore.hasStarted) {
+                    BottomNavigation(
+                        navController,
+                        items =
+                        listOf(
+                            IconsForGame(R.drawable.icon_home, "Home"),
+                            IconsForGame(R.drawable.icon_start, "Start"),
+                            IconsForGame(R.drawable.icon_save, "Save"),
 
-                        )
-                )
+                            ), sharedViewModel
+                    )
+                } else {
+                    BottomNavigation(
+                        navController,
+                        items =
+                        listOf(
+                            IconsForGame(R.drawable.icon_home, "Home"),
+                            IconsForGame(R.drawable.icon_continue, "Continue"),
+                            IconsForGame(R.drawable.icon_new, "New"),
+                            IconsForGame(R.drawable.icon_save, "Save"),
+                        ), sharedViewModel
+                    )
+                }
+
+
             }
             //bottomBar = { BottomAppBar(backgroundColor = Color.Red, modifier = Modifier.fillMaxHeight()) { Text("Click FloatingAction to add Random elements ") } },
             // floatingActionButton = {
             //FloatingActionButton(onClick = { navController.navigate(Screen.CreateNote.route) }
 
         ) {
+            Column(Modifier.fillMaxSize().border(4.dp, Color.Black)) {
+                GameSettings(sharedViewModel)
+                PlayerSettings(sharedViewModel)
+            }
 
-            //Preview_MultipleRadioButtons()
-
-            RadioButtonSample()
-            //GameSettings()
-            //GameScreen(navController = navController, sharedViewModel = sharedViewModel)
 
 
         }
@@ -86,32 +100,78 @@ fun Settings(navController: NavController, sharedViewModel: SharedViewModel) {
 
 }
 
+@Composable
+fun PlayerSettings(sharedViewModel: SharedViewModel) {
+    Row (
+        Modifier
+            .border(2.dp, Color.Black)
+            .fillMaxWidth()
+            .fillMaxHeight()){
+        Column(
+            Modifier
+                .fillMaxHeight()
+                .fillMaxWidth(0.5f)
+                .border(2.dp, Color.Black)) {
+                HeaderSetting(headText = "Player1")
+        }
+        Column(
+            Modifier
+                .fillMaxHeight()
+                .border(2.dp, Color.Black)) {
+            HeaderSetting(headText = "Player2")
+        }
+
+    }
+}
+
 
 @Composable
 fun GameSettings(sharedViewModel: SharedViewModel) {
 
-    Column() {
-        Row() { HeaderSetting("Game Settings") }
-        Row(modifier = Modifier.padding(/*30.dp,10.dp*/)) {
+    Column(
+        Modifier
+            .border(2.dp, Color.Black)
+            .fillMaxWidth()
+
+    ) {
+        Row() {
+
+            if (!sharedViewModel.gameScore.hasStarted) {
+                HeaderSetting("Game Settings")
+            } else {
+                HeaderSetting("Pause")
+            }
+        }
+        var mod = Modifier.padding(10.dp, 10.dp)
+        Row(modifier = mod) {
             Text(
-                text = "Score To Win",
+                text = "Score To Win:",
                 fontSize = 20.sp,
                 fontWeight = FontWeight.Bold,
                 textAlign = TextAlign.Center,
             )
-            RadioButtonSample(list = listOf(
-                RadioButtonInfo("ScoreToWin","7"),
-                RadioButtonInfo("ScoreToWin","11"),
-                RadioButtonInfo("ScoreToWin","15"),
-                RadioButtonInfo("scoreToWin","21")
-
-
-
+            RadioButtonSample(
+                list = listOf(
+                    RadioButtonInfo("7", "ScoreToWin"),
+                    RadioButtonInfo("11", "ScoreToWin"),
+                    RadioButtonInfo("15", "ScoreToWin"),
+                    RadioButtonInfo("21", "ScoreToWin")
+                ), sharedViewModel
             )
-                ,sharedViewModel)
 
 
         }
+        if (sharedViewModel.gameScore.hasStarted) {
+            Row(mod) {
+                Text(
+                    text = "Current Score: \t" + sharedViewModel.gameScore.player1_score + " : " + sharedViewModel.gameScore.player2_score,
+                    fontSize = 20.sp,
+                    fontWeight = FontWeight.Bold,
+                    textAlign = TextAlign.Center,
+                )
+            }
+        }
+
     }
 }
 
@@ -126,6 +186,7 @@ fun RadioButtonSample(list: List<RadioButtonInfo>, sharedViewModel: SharedViewMo
     if (list[0].function == "ScoreToWin") {
         currentSavedModel = 0;
         for (i in 0..list.size) {
+            //  print(Integer.decode(list[i].name))
             if (Integer.decode(list[i].name) == sharedViewModel.gameScore.maxScore) {
                 currentSavedModel = i
                 break
@@ -135,7 +196,7 @@ fun RadioButtonSample(list: List<RadioButtonInfo>, sharedViewModel: SharedViewMo
     } else if (list[0].function == "PlayerOneLevel") {
         currentSavedModel = 0;
         for (i in 0..list.size) {
-            if (createLevel( list[i].name) == sharedViewModel.player1.level) {
+            if (createLevel(list[i].name) == sharedViewModel.player1.level) {
                 currentSavedModel = i
                 break
             }
@@ -144,7 +205,7 @@ fun RadioButtonSample(list: List<RadioButtonInfo>, sharedViewModel: SharedViewMo
     } else if (list[0].function == "PlayerTwoLevel") {
         currentSavedModel = 0;
         for (i in 0..list.size) {
-            if (createLevel( list[i].name) == sharedViewModel.player2.level) {
+            if (createLevel(list[i].name) == sharedViewModel.player2.level) {
                 currentSavedModel = i
                 break
             }
@@ -157,7 +218,7 @@ fun RadioButtonSample(list: List<RadioButtonInfo>, sharedViewModel: SharedViewMo
 
     val (selectedOption, onOptionSelected) = remember { mutableStateOf(list[currentSavedModel]) }
 
-    // Inspiered by https://foso.github.io/Jetpack-Compose-Playground/material/radiobutton/
+    // inspiriert by https://foso.github.io/Jetpack-Compose-Playground/material/radiobutton/
     Row {
         list.forEach { item ->
             Column(
@@ -172,11 +233,10 @@ fun RadioButtonSample(list: List<RadioButtonInfo>, sharedViewModel: SharedViewMo
                 //.padding(horizontal = 16.dp)
             ) {
                 Text(
-                    text = item.name,
-                    fontWeight = FontWeight.Bold,
+                    text = safe7(item.name),
                     fontSize = 22.sp,
                     style = MaterialTheme.typography.body1.merge(),
-                    modifier = Modifier.padding(start = 16.dp)
+                    modifier = Modifier.padding(start = 13.dp)
                 )
                 RadioButton(
                     selected = (item == selectedOption),
@@ -184,9 +244,9 @@ fun RadioButtonSample(list: List<RadioButtonInfo>, sharedViewModel: SharedViewMo
                         onOptionSelected(item)
                         if (item.function == "ScoreToWin") {
                             sharedViewModel.gameScore.maxScore = Integer.decode(item.name)
-                        } else if (item.function == "PlayerOneLevel"){
+                        } else if (item.function == "PlayerOneLevel") {
                             sharedViewModel.player1.level = createLevel(item.name)
-                        } else if (item.function == "PlayerTwoLevel"){
+                        } else if (item.function == "PlayerTwoLevel") {
                             sharedViewModel.player2.level = createLevel(item.name)
                         }
 
@@ -199,8 +259,13 @@ fun RadioButtonSample(list: List<RadioButtonInfo>, sharedViewModel: SharedViewMo
     }
 }
 
-
-
+fun safe7(name: String): String {
+    if (name == "7") {
+        return "07"
+    } else {
+        return name
+    }
+}
 
 
 @Composable
@@ -349,7 +414,11 @@ fun BottomBar() {
 
 // Inspieriert durch https://medium.com/geekculture/bottom-navigation-in-jetpack-compose-android-9cd232a8b16
 @Composable
-fun BottomNavigation(navController: NavController, items: List<IconsForGame>) {
+fun BottomNavigation(
+    navController: NavController,
+    items: List<IconsForGame>,
+    sharedViewModel: SharedViewModel
+) {
     androidx.compose.material.BottomNavigation(
         backgroundColor = Color.White,
         contentColor = Color.Black,
@@ -376,7 +445,18 @@ fun BottomNavigation(navController: NavController, items: List<IconsForGame>) {
                 alwaysShowLabel = true,
                 selected = true,
                 onClick = {
-                    /* TODO */
+                    if (item.function == "Continue") {
+                        navController.navigate(Screen.GameScreen.route)
+
+                    } else if (item.function == "New") {
+                        sharedViewModel.newGame()
+                        navController.navigate(Screen.GameScreen.route)
+
+                    } else if (item.function == "Save") {
+                        // #TODO
+                    } else if (item.function == "Home") {
+                        //#TODO
+                    }
                 },
                 modifier = Modifier.padding(20.dp)
             )

@@ -49,7 +49,7 @@ fun createIcons(
                     sharedViewModel.brickShot()
                     print("BrickShoot")
                     navController.navigate(Screen.GameScreen.route)
-                } else if (item.function == "Settings") {
+                } else if (item.function == "Pause") {
                     navController.navigate(Screen.GameSettingScreen.route)
                 }
             }) {

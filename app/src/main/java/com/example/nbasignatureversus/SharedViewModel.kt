@@ -32,6 +32,15 @@ class SharedViewModel : ViewModel() {
     }
 
 
+    fun newGame(){
+        gameScore.hasStarted = false
+        gameScore.player1_score = 0
+        gameScore.player2_score = 0
+        currentGif = getTheGifForPlayer()
+        gameScore.player1_turn = Random.nextBoolean()
+    }
+
+
 
     // function to update if a player missed
     // Player turn change

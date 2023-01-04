@@ -1,5 +1,7 @@
 package com.example.nbasignatureversus
 
+import kotlin.random.Random
+
 enum class Level {
     Pro, ADVANCED, ROOKIE, Master,
 }
@@ -26,7 +28,9 @@ class GameData(gameScore: GameScore,player1:Player,player2: Player){
 
 }
 
+fun gameHasStarted(){
 
+}
 
 
 class Player(val name: String, var level: Level, var picture: Int) {
@@ -37,7 +41,7 @@ class Player(val name: String, var level: Level, var picture: Int) {
 }
 
 
-class GameScore(var player1_score:Int, var player2_score:Int, var player1_turn: Boolean, var maxScore:Int){
+class GameScore(var player1_score:Int, var player2_score:Int, var player1_turn: Boolean, var maxScore:Int, var hasStarted:Boolean){
 
-    constructor():this(0,0,true,11)
+    constructor():this(0,0, Random.nextBoolean(),11,hasStarted = false)
 }
