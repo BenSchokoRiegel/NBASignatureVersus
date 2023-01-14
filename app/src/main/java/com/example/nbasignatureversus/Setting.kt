@@ -1,9 +1,14 @@
 package com.example.nbasignatureversus
 
+import android.app.AlertDialog
 import android.content.ClipData
 import android.content.ClipData.Item
+import android.content.DialogInterface
 import android.graphics.drawable.Icon
+import android.icu.lang.UCharacter.LineBreak
+import android.text.InputType
 import android.util.Log
+import android.widget.EditText
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.MagnifierStyle.Companion.Default
 import androidx.compose.foundation.background
@@ -13,6 +18,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 
 
@@ -34,8 +40,11 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.TextStyle.Companion.Default
+import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
@@ -45,7 +54,7 @@ import androidx.navigation.NavController
 import com.example.nbasignatureversus.ui.theme.NBASIgnatureVersusTheme
 
 
-val topAndBottomColor: Color = Color.Red
+val topAndBottomColor: Color = "#db711e".color
 
 @Composable
 fun Settings(navController: NavController, sharedViewModel: SharedViewModel) {
@@ -54,7 +63,7 @@ fun Settings(navController: NavController, sharedViewModel: SharedViewModel) {
     NBASIgnatureVersusTheme(darkTheme = false) {
         // A surface container using the 'background' color from the theme
         Scaffold(
-            topBar = { Topbar("#db711e".color, " Settings ") },
+            topBar = { Topbar(topAndBottomColor, " Settings ") },
             bottomBar = {
                 if (!sharedViewModel.gameScore.hasStarted) {
                     BottomNavigation(
@@ -87,7 +96,10 @@ fun Settings(navController: NavController, sharedViewModel: SharedViewModel) {
             //FloatingActionButton(onClick = { navController.navigate(Screen.CreateNote.route) }
 
         ) {
-            Column(Modifier.fillMaxSize().border(4.dp, Color.Black)) {
+            Column(
+                Modifier
+                    .fillMaxSize()
+                    .border(4.dp, Color.Black)) {
                 GameSettings(sharedViewModel)
                 PlayerSettings(sharedViewModel)
             }
@@ -99,6 +111,10 @@ fun Settings(navController: NavController, sharedViewModel: SharedViewModel) {
 
 
 }
+
+
+
+
 
 @Composable
 fun PlayerSettings(sharedViewModel: SharedViewModel) {
@@ -112,18 +128,58 @@ fun PlayerSettings(sharedViewModel: SharedViewModel) {
                 .fillMaxHeight()
                 .fillMaxWidth(0.5f)
                 .border(2.dp, Color.Black)) {
-                HeaderSetting(headText = "Player1")
+                HeaderSetting(headText = "Player 1")
+            Player(sharedViewModel,true)
         }
         Column(
             Modifier
                 .fillMaxHeight()
                 .border(2.dp, Color.Black)) {
-            HeaderSetting(headText = "Player2")
+            HeaderSetting(headText = "Player 2")
+            Player(sharedViewModel,false)
         }
 
     }
 }
 
+// TODO ENTER -> Stop typing
+@Composable
+fun Player(sharedViewModel: SharedViewModel, isPlayerOne: Boolean){
+    Text( "--------------------------------------------------", maxLines = 1)
+   var currentName : String
+    if (isPlayerOne){
+        currentName = sharedViewModel.player1.name
+    } else{
+        currentName = sharedViewModel.player2.name
+    }
+
+    var name  by remember { mutableStateOf(TextFieldValue(currentName))}
+
+    Row(){
+        //Text("Name : ",fontWeight = FontWeight.Bold )
+        TextField(
+            value = name,
+            onValueChange = { it ->
+                name = it
+                if (isPlayerOne){
+                    sharedViewModel.player1.name = name.text
+                } else {
+                    sharedViewModel.player2.name = name.text
+                }
+            },
+            label = { Text(text = "Your Name") },
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
+            placeholder = { Text(text = "Please Write your name") },
+            maxLines = 1,
+            singleLine = true
+        )
+
+    }
+
+
+
+
+}
 
 @Composable
 fun GameSettings(sharedViewModel: SharedViewModel) {
@@ -158,6 +214,7 @@ fun GameSettings(sharedViewModel: SharedViewModel) {
                     RadioButtonInfo("21", "ScoreToWin")
                 ), sharedViewModel
             )
+
 
 
         }
@@ -384,88 +441,30 @@ fun Topbar(backgroundColor: Color, topBarText: String) {
 }
 
 
-@Composable
-fun HeaderSetting(headText: String) {
-    Text(
-        text = headText,
-        fontSize = 25.sp,
-        fontWeight = FontWeight.Bold,
-        textAlign = TextAlign.Center,
-        style = TextStyle(textDecoration = TextDecoration.Underline),
-        modifier = Modifier
-            .fillMaxWidth()
-            .alpha(1f)
-            .padding(defaultPadding)
-
-    )
 
 
+
+
+/**
+// Inspiration by https://handyopinion.com/show-alert-dialog-with-an-input-field-edittext-in-android-kotlin/
+fun showdialog(){
+    val builder: AlertDialog.Builder = android.app.AlertDialog.Builder(this)
+    builder.setTitle("Title")
+
+// Set up the input
+    val input = EditText(this)
+// Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
+    input.setHint("Enter Text")
+    input.inputType = InputType.TYPE_CLASS_TEXT
+    builder.setView(input)
+
+// Set up the buttons
+    builder.setPositiveButton("OK", DialogInterface.OnClickListener { dialog, which ->
+        // Here you get get input text from the Edittext
+        var m_Text = input.text.toString()
+    })
+    builder.setNegativeButton("Cancel", DialogInterface.OnClickListener { dialog, which -> dialog.cancel() })
+
+    builder.show()
 }
-
-@Composable
-fun BottomBar() {
-    BottomAppBar(
-        contentColor = topAndBottomColor,
-        content = {
-
-        }
-    )
-}
-
-// Inspieriert durch https://medium.com/geekculture/bottom-navigation-in-jetpack-compose-android-9cd232a8b16
-@Composable
-fun BottomNavigation(
-    navController: NavController,
-    items: List<IconsForGame>,
-    sharedViewModel: SharedViewModel
-) {
-    androidx.compose.material.BottomNavigation(
-        backgroundColor = Color.White,
-        contentColor = Color.Black,
-        modifier = Modifier
-            .fillMaxHeight(0.2f)
-            .padding(10.dp)
-    ) {
-        items.forEach { item ->
-            BottomNavigationItem(
-                icon = {
-                    Icon(
-                        painterResource(id = item.location),
-                        contentDescription = item.function
-                    )
-                },
-//                label = {
-//                    Text(
-//                        text = item.function,
-//                        fontSize = 9.sp
-//                    )
-//                },
-                selectedContentColor = Color.Black,
-                unselectedContentColor = Color.Black.copy(0.4f),
-                alwaysShowLabel = true,
-                selected = true,
-                onClick = {
-                    if (item.function == "Continue") {
-                        navController.navigate(Screen.GameScreen.route)
-
-                    } else if (item.function == "New") {
-                        sharedViewModel.newGame()
-                        navController.navigate(Screen.GameScreen.route)
-
-                    } else if (item.function == "Save") {
-                        // #TODO
-                    } else if (item.function == "Home") {
-                        //#TODO
-                    }
-                },
-                modifier = Modifier.padding(20.dp)
-            )
-        }
-    }
-
-
-}
-
-
-
-
+*/

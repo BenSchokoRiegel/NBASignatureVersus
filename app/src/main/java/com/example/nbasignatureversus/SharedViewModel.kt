@@ -62,6 +62,15 @@ class SharedViewModel : ViewModel() {
     }
 
 
+    fun getWinner(): Player {
+        if (gameScore.player1_score > gameScore.player2_score ) {
+            return player1
+        } else {
+            return player2
+        }
+    }
+
+
     // getting an Gif which is under or equal to the level off the player
     fun getTheGifForPlayer(): Gif {
 
@@ -102,7 +111,13 @@ class SharedViewModel : ViewModel() {
         var levelList: List<Level> = listOf(Level.ROOKIE, Level.ADVANCED, Level.Pro, Level.Master)
 
         return levelList.indexOf(a) >= levelList.indexOf(b)
+    }
 
+    fun checkIfAllReady():Boolean{
+        if (this.player1.name != "" && this.player2.name != ""){
+            return true
+        }
+        return false
 
     }
 

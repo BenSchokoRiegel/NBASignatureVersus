@@ -1,5 +1,7 @@
 package com.example.nbasignatureversus
 
+import GameOver
+
 import androidx.compose.runtime.*
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavType
@@ -23,6 +25,9 @@ fun Navigation() {
             Settings(navController = navController, sharedViewModel = sharedViewModel)
         }
 
+        composable(route = Screen.GameOver.route){
+            GameOver(navController = navController, sharedViewModel = sharedViewModel)
+        }
 //        composable(route = Screen.CreateNote.route) {
 //            CreateNote(navController)
 //        }
