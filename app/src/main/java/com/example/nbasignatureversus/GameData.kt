@@ -3,21 +3,31 @@ package com.example.nbasignatureversus
 import kotlin.random.Random
 
 enum class Level {
-    Pro, ADVANCED, ROOKIE, Master,
+    Rookie,   Pro,  Athlete,
+}
+
+fun giveStringLevel():List<String>{
+    var result = mutableListOf<String>()
+    for (value in Level.values()){
+        var x = value.name
+        result.add(x)
+    }
+
+    return result
+
 }
 
 fun createLevel(name: String): Level {
-    if (name == "PRO"){
+    if (name == "Pro"){
         return Level.Pro
-    } else if (name == "ADVANCED"){
-        return Level.ADVANCED
-    } else if (name =="ROOKIE"){
-        return Level.ROOKIE
-    } else if (name == "MASTER"){
-        return Level.Master
+
+    } else if (name =="Rookie"){
+        return Level.Rookie
+    } else if (name == "Athlete"){
+        return Level.Athlete
     } else {
         java.lang.Error("not a real Level")
-        return Level.ROOKIE
+        return Level.Rookie
     }
 }
 
@@ -42,8 +52,9 @@ class Player(var name: String, var level: Level, var picture: Int) {
 
 
 
-
+// #TODO Free play modus -> with or without
 class GameScore(var player1_score:Int, var player2_score:Int, var player1_turn: Boolean, var maxScore:Int, var hasStarted:Boolean){
 
     constructor():this(0,0, Random.nextBoolean(),11,hasStarted = false)
 }
+

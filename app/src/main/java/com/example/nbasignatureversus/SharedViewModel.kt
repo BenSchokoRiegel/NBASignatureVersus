@@ -63,6 +63,7 @@ class SharedViewModel : ViewModel() {
 
 
     fun getWinner(): Player {
+        gameScore.hasStarted = false
         if (gameScore.player1_score > gameScore.player2_score ) {
             return player1
         } else {
@@ -100,15 +101,24 @@ class SharedViewModel : ViewModel() {
         return possibleGif.get(Random.nextInt(0, possibleGif.size))
     }
 
+    private fun isLevelExcepted(a: Level, b: Level): Boolean {
+
+        if (a == b){
+            return true
+        } else return a == Level.Athlete && b == Level.Pro
+
+
+    }
+
 
     // compares to Level and return true if the level of a is inside b
-    fun isLevelExcepted(a: Level, b: Level): Boolean {
+    fun compareLevel(a: Level, b: Level): Boolean {
 
-        if (a == Level.Master && b == Level.ROOKIE){
+        if (a == Level.Athlete && b == Level.Rookie){
             return false
         }
 
-        var levelList: List<Level> = listOf(Level.ROOKIE, Level.ADVANCED, Level.Pro, Level.Master)
+        var levelList: List<Level> = listOf(Level.Rookie,  Level.Pro, Level.Athlete)
 
         return levelList.indexOf(a) >= levelList.indexOf(b)
     }

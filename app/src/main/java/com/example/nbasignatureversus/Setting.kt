@@ -24,8 +24,7 @@ import androidx.compose.material.*
 
 import androidx.compose.material.Icon
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Info
-import androidx.compose.material.icons.filled.Share
+import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.*
 
 import androidx.compose.ui.Alignment
@@ -35,6 +34,7 @@ import androidx.compose.ui.draw.drawWithContent
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.Role
@@ -50,9 +50,13 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.unit.toSize
 import androidx.navigation.NavController
 import com.example.nbasignatureversus.ui.theme.NBASIgnatureVersusTheme
 
+import androidx.compose.ui.geometry.Size
+import androidx.compose.ui.platform.LocalDensity
+import java.nio.channels.NonWritableChannelException
 
 val topAndBottomColor: Color = "#db711e".color
 
@@ -71,7 +75,7 @@ fun Settings(navController: NavController, sharedViewModel: SharedViewModel) {
                         items =
                         listOf(
                             IconsForGame(R.drawable.icon_home, "Home"),
-                            IconsForGame(R.drawable.icon_start, "Start"),
+                            IconsForGame(R.drawable.icon_start, "New"),
                             IconsForGame(R.drawable.icon_save, "Save"),
 
                             ), sharedViewModel
@@ -129,14 +133,14 @@ fun PlayerSettings(sharedViewModel: SharedViewModel) {
                 .fillMaxWidth(0.5f)
                 .border(2.dp, Color.Black)) {
                 HeaderSetting(headText = "Player 1")
-            Player(sharedViewModel,true)
+            Player(sharedViewModel.player1)
         }
         Column(
             Modifier
                 .fillMaxHeight()
                 .border(2.dp, Color.Black)) {
             HeaderSetting(headText = "Player 2")
-            Player(sharedViewModel,false)
+            Player(sharedViewModel.player2)
         }
 
     }
@@ -144,28 +148,17 @@ fun PlayerSettings(sharedViewModel: SharedViewModel) {
 
 // TODO ENTER -> Stop typing
 @Composable
-fun Player(sharedViewModel: SharedViewModel, isPlayerOne: Boolean){
+fun Player(player:Player){
     Text( "--------------------------------------------------", maxLines = 1)
-   var currentName : String
-    if (isPlayerOne){
-        currentName = sharedViewModel.player1.name
-    } else{
-        currentName = sharedViewModel.player2.name
-    }
 
-    var name  by remember { mutableStateOf(TextFieldValue(currentName))}
+    var name  by remember { mutableStateOf(TextFieldValue(player.name))}
 
     Row(){
         //Text("Name : ",fontWeight = FontWeight.Bold )
         TextField(
             value = name,
             onValueChange = { it ->
-                name = it
-                if (isPlayerOne){
-                    sharedViewModel.player1.name = name.text
-                } else {
-                    sharedViewModel.player2.name = name.text
-                }
+                player.name = it.text
             },
             label = { Text(text = "Your Name") },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
@@ -174,11 +167,97 @@ fun Player(sharedViewModel: SharedViewModel, isPlayerOne: Boolean){
             singleLine = true
         )
 
+
     }
+    LevelSetting(player)
+    /*Row(){
+        if (isPlayerOne){
+            RadioButtonSample(
+                list = listOf(
+                    RadioButtonInfo("Anf", "PlayerOneLevel"),
+                    RadioButtonInfo("Rookie", "PlayerOneLevel"),
+                    RadioButtonInfo("Pro", "PlayerOneLevel"),
+                ), sharedViewModel
+            )
+        } else {
+            RadioButtonSample(
+                list = listOf(
+                    RadioButtonInfo("Anf", "PlayerTwoLevel"),
+                    RadioButtonInfo("Rookie", "PlayerTwoLevel"),
+                    RadioButtonInfo("Pro", "PlayerTwoLevel"),
+                ), sharedViewModel
+            )
+        }
+
+    }*/
+}
 
 
+// Inspiriert durch https://www.geeksforgeeks.org/drop-down-menu-in-android-using-jetpack-compose/
+@Composable
+fun LevelSetting(player:Player){
 
+    // Declaring a boolean value to store
+    // the expanded state of the Text Field
+    var mExpanded by remember { mutableStateOf(false) }
 
+    // Create a list of cities
+    //val mCities = listOf("Delhi", "Mumbai", "Chennai", "Kolkata", "Hyderabad", "Bengaluru", "Pune")
+    var allLevel = giveStringLevel()
+    //val mCities = listOf(Level.values()[0].toString())
+
+    // Create a string value to store the selected city
+    var mSelectedText by remember { mutableStateOf(player.level.name) }
+
+    var mTextFieldSize by remember { mutableStateOf(Size.Zero)}
+
+    // Up Icon when expanded and down icon when collapsed
+    val icon = if (mExpanded)
+        Icons.Filled.KeyboardArrowUp
+    else
+        Icons.Filled.KeyboardArrowDown
+
+    Column(Modifier.padding(20.dp)) {
+
+        // Create an Outlined Text Field
+        // with icon and not expanded
+        OutlinedTextField(
+            value = mSelectedText,
+            onValueChange = {/* mSelectedText = it */},
+            modifier = Modifier
+                .fillMaxWidth()
+                .onGloballyPositioned { coordinates ->
+                    // This value is used to assign to
+                    // the DropDown the same width
+                    mTextFieldSize = coordinates.size.toSize()
+                },
+
+            label = {Text("Level")},
+            trailingIcon = {
+                Icon(icon,"contentDescription",
+                    Modifier.clickable { mExpanded = !mExpanded })
+            }
+        )
+
+        // Create a drop-down menu with list of cities,
+        // when clicked, set the Text Field text as the city selected
+        DropdownMenu(
+            expanded = mExpanded,
+            onDismissRequest = { mExpanded = false },
+            modifier = Modifier
+                .width(with(LocalDensity.current){mTextFieldSize.width.toDp()})
+        ) {
+            allLevel.forEach { level ->
+                DropdownMenuItem(onClick = {
+                    mSelectedText = level
+                    player.level = createLevel(level)
+                    mExpanded = false
+                }) {
+                    Text(text = level)
+                }
+            }
+        }
+    }
 }
 
 @Composable
@@ -234,6 +313,12 @@ fun GameSettings(sharedViewModel: SharedViewModel) {
 
 
 class RadioButtonInfo(val name: String, val function: String) {}
+
+
+
+
+
+
 
 
 @Composable

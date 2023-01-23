@@ -22,8 +22,8 @@ fun GameOver(navController: NavController, sharedViewModel: SharedViewModel) {
                         listOf(
                             IconsForGame(R.drawable.icon_home, "Home"),
                             IconsForGame(R.drawable.icon_settings, "Settings"),
-                            IconsForGame(R.drawable.icon_new, "New"),
-                            IconsForGame(R.drawable.icon_save, "Save"),
+                            //IconsForGame(R.drawable.icon_new, "New"),
+                            IconsForGame(R.drawable.icon_replay, "New"),
 
                             ), sharedViewModel
                     )
