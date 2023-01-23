@@ -62,7 +62,7 @@ fun GameScreenTopBar(navController: NavController, sharedViewModel: SharedViewMo
     NBASIgnatureVersusTheme(darkTheme = false) {
         // A surface container using the 'background' color from the theme
         Scaffold(
-            topBar = { Topbar(sharedViewModel.currentGif.color, " GAME TIME ") },
+            topBar = { Topbar(sharedViewModel.currentGif.color, " GAME TIME ",navController) },
             // bottomBar = { BottomAppBar(backgroundColor = Color.Red) { Text("Click FloatingAction to add Random elements ") } },
             // floatingActionButton = {
             //FloatingActionButton(onClick = { navController.navigate(Screen.CreateNote.route) }

@@ -1,16 +1,9 @@
 package com.example.nbasignatureversus
 
-import android.app.AlertDialog
-import android.content.ClipData
-import android.content.ClipData.Item
-import android.content.DialogInterface
-import android.graphics.drawable.Icon
-import android.icu.lang.UCharacter.LineBreak
-import android.text.InputType
-import android.util.Log
-import android.widget.EditText
+
+import android.content.Intent
+import android.net.Uri
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.MagnifierStyle.Companion.Default
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -20,45 +13,36 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
-
-
-import androidx.compose.material.Icon
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.*
-
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.drawWithContent
+import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.Shape
-import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.onGloballyPositioned
-import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.semantics.Role
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.TextStyle.Companion.Default
-import androidx.compose.ui.text.font.Font
-import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.style.TextDecoration
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.unit.toSize
+import androidx.core.content.ContextCompat.startActivity
 import androidx.navigation.NavController
 import com.example.nbasignatureversus.ui.theme.NBASIgnatureVersusTheme
 
-import androidx.compose.ui.geometry.Size
-import androidx.compose.ui.platform.LocalDensity
-import java.nio.channels.NonWritableChannelException
 
 val topAndBottomColor: Color = "#db711e".color
+
+val playerPadding = 10.dp
 
 @Composable
 fun Settings(navController: NavController, sharedViewModel: SharedViewModel) {
@@ -67,7 +51,7 @@ fun Settings(navController: NavController, sharedViewModel: SharedViewModel) {
     NBASIgnatureVersusTheme(darkTheme = false) {
         // A surface container using the 'background' color from the theme
         Scaffold(
-            topBar = { Topbar(topAndBottomColor, " Settings ") },
+            topBar = { Topbar(topAndBottomColor, " Settings ", navController = navController) },
             bottomBar = {
                 if (!sharedViewModel.gameScore.hasStarted) {
                     BottomNavigation(
@@ -107,8 +91,6 @@ fun Settings(navController: NavController, sharedViewModel: SharedViewModel) {
                 GameSettings(sharedViewModel)
                 PlayerSettings(sharedViewModel)
             }
-
-
 
         }
     }
@@ -153,12 +135,13 @@ fun Player(player:Player){
 
     var name  by remember { mutableStateOf(TextFieldValue(player.name))}
 
-    Row(){
+    Row(Modifier.padding(20.dp,2.dp)){
         //Text("Name : ",fontWeight = FontWeight.Bold )
         TextField(
             value = name,
             onValueChange = { it ->
-                player.name = it.text
+                name = it
+                player.name = name.text
             },
             label = { Text(text = "Your Name") },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
@@ -169,27 +152,51 @@ fun Player(player:Player){
 
 
     }
-    LevelSetting(player)
-    /*Row(){
-        if (isPlayerOne){
-            RadioButtonSample(
-                list = listOf(
-                    RadioButtonInfo("Anf", "PlayerOneLevel"),
-                    RadioButtonInfo("Rookie", "PlayerOneLevel"),
-                    RadioButtonInfo("Pro", "PlayerOneLevel"),
-                ), sharedViewModel
-            )
-        } else {
-            RadioButtonSample(
-                list = listOf(
-                    RadioButtonInfo("Anf", "PlayerTwoLevel"),
-                    RadioButtonInfo("Rookie", "PlayerTwoLevel"),
-                    RadioButtonInfo("Pro", "PlayerTwoLevel"),
-                ), sharedViewModel
-            )
-        }
+   LevelSetting(player)
 
-    }*/
+    Row(Modifier.padding(0.dp,5.dp)){
+        Image(
+            modifier = Modifier
+                .padding(10.dp,2.dp)
+                .size(75.dp)
+                .clip(CircleShape),
+            painter = painterResource(id = player.picture),
+            contentDescription = "",
+            contentScale = ContentScale.FillHeight
+        )
+    Column(Modifier.padding(0.dp)){
+        Button(onClick = { /*TODO*/ }) { Text("load", maxLines = 1)
+        }
+        Button(onClick = { /*TODO*/ }) { Text("make",maxLines = 1)
+        }
+    }
+
+    }
+    Row(modifier = Modifier.padding(10.dp)){
+        androidx.compose.material.Icon(
+            painter = painterResource(id = R.drawable.icon_save),
+            contentDescription = null,
+            modifier = Modifier
+                .alpha(1f)
+                .clickable {
+                    // navController.navigate(Screen.Twitter.route)
+                },
+            tint = Color.Black
+        )
+        androidx.compose.material.Icon(
+            painter = painterResource(id = R.drawable.folder),
+            contentDescription = null,
+            modifier = Modifier
+                .alpha(1f)
+                .clickable {
+                    // navController.navigate(Screen.Twitter.route)
+                },
+            tint = Color.Black
+        )
+
+
+    }
+
 }
 
 
@@ -217,7 +224,7 @@ fun LevelSetting(player:Player){
     else
         Icons.Filled.KeyboardArrowDown
 
-    Column(Modifier.padding(20.dp)) {
+    Column(Modifier.padding(20.dp,5.dp)) {
 
         // Create an Outlined Text Field
         // with icon and not expanded
@@ -257,6 +264,7 @@ fun LevelSetting(player:Player){
                 }
             }
         }
+
     }
 }
 
@@ -274,10 +282,19 @@ fun GameSettings(sharedViewModel: SharedViewModel) {
             if (!sharedViewModel.gameScore.hasStarted) {
                 HeaderSetting("Game Settings")
             } else {
-                HeaderSetting("Pause")
+                HeaderSetting("Pause" )
             }
         }
-        var mod = Modifier.padding(10.dp, 10.dp)
+        if (sharedViewModel.gameScore.hasStarted) {
+            Row(Modifier.padding(horizontal = 10.dp)) {
+                Text(text = "Current Score: \t" + sharedViewModel.gameScore.player1_score + " : " + sharedViewModel.gameScore.player2_score,
+                    fontSize = 20.sp,
+                    fontWeight = FontWeight.Bold,
+                    textAlign = TextAlign.Center,
+                )
+            }
+        }
+        var mod = Modifier.padding(10.dp, 5.dp)
         Row(modifier = mod) {
             Text(
                 text = "Score To Win:",
@@ -285,6 +302,8 @@ fun GameSettings(sharedViewModel: SharedViewModel) {
                 fontWeight = FontWeight.Bold,
                 textAlign = TextAlign.Center,
             )
+
+
             RadioButtonSample(
                 list = listOf(
                     RadioButtonInfo("7", "ScoreToWin"),
@@ -297,16 +316,9 @@ fun GameSettings(sharedViewModel: SharedViewModel) {
 
 
         }
-        if (sharedViewModel.gameScore.hasStarted) {
-            Row(mod) {
-                Text(
-                    text = "Current Score: \t" + sharedViewModel.gameScore.player1_score + " : " + sharedViewModel.gameScore.player2_score,
-                    fontSize = 20.sp,
-                    fontWeight = FontWeight.Bold,
-                    textAlign = TextAlign.Center,
-                )
-            }
-        }
+
+
+
 
     }
 }
@@ -378,7 +390,7 @@ fun RadioButtonSample(list: List<RadioButtonInfo>, sharedViewModel: SharedViewMo
                     text = safe7(item.name),
                     fontSize = 22.sp,
                     style = MaterialTheme.typography.body1.merge(),
-                    modifier = Modifier.padding(start = 13.dp)
+                    modifier = Modifier.padding(start = 13.dp, top = 0.dp, end = 0.dp,0.dp)
                 )
                 RadioButton(
                     selected = (item == selectedOption),
@@ -417,7 +429,7 @@ fun SegmentedControl(items: List<String>, defaultSelectedItemIndex: Int, any: An
 
 
 @Composable
-fun Topbar(backgroundColor: Color, topBarText: String) {
+fun Topbar(backgroundColor: Color, topBarText: String,navController: NavController) {
 
     val textStyleBody1 = MaterialTheme.typography.body1
     var textStyle by remember { mutableStateOf(textStyleBody1) }
@@ -447,7 +459,9 @@ fun Topbar(backgroundColor: Color, topBarText: String) {
                     contentDescription = null,
                     modifier = Modifier
                         .alpha(1f)
-                        .clickable { },
+                        .clickable {
+                            navController.navigate(Screen.Twitter.route)
+                        },
                     tint = Color.Black
                 )
 
@@ -456,7 +470,10 @@ fun Topbar(backgroundColor: Color, topBarText: String) {
                     contentDescription = null,
                     modifier = Modifier
                         .alpha(1f)
-                        .clickable { },
+                        .clickable {
+                            navController.navigate(Screen.Github.route)
+
+                        },
                     tint = Color.Black
                 )
                 androidx.compose.material.Icon(
@@ -464,7 +481,10 @@ fun Topbar(backgroundColor: Color, topBarText: String) {
                     contentDescription = null,
                     modifier = Modifier
                         .alpha(1f)
-                        .clickable { },
+                        .clickable {
+                            navController.navigate(Screen.LinkedIn.route)
+
+                        },
                     tint = Color.Black
                 )
             }
@@ -524,7 +544,6 @@ fun Topbar(backgroundColor: Color, topBarText: String) {
 
     )
 }
-
 
 
 

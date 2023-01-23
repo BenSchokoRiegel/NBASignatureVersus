@@ -14,7 +14,7 @@ fun GameOver(navController: NavController, sharedViewModel: SharedViewModel) {
     NBASIgnatureVersusTheme(darkTheme = false) {
         // A surface container using the 'background' color from the theme
         Scaffold(
-            topBar = { Topbar(topAndBottomColor, " Game Over ") },
+            topBar = { Topbar(topAndBottomColor, " Game Over ",navController) },
             bottomBar = {
                     BottomNavigation(
                         navController,

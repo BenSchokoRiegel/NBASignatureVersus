@@ -1,14 +1,16 @@
 package com.example.nbasignatureversus
 
 import GameOver
-
+import android.content.Intent
+import android.net.Uri
 import androidx.compose.runtime.*
+import androidx.compose.ui.platform.LocalContext
+import androidx.core.content.ContextCompat.startActivity
 import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import androidx.navigation.navArgument
+
 
 @Composable
 fun Navigation() {
@@ -28,12 +30,32 @@ fun Navigation() {
         composable(route = Screen.GameOver.route){
             GameOver(navController = navController, sharedViewModel = sharedViewModel)
         }
+
+        composable(route = Screen.LinkedIn.route){
+            val context = LocalContext.current
+            val intent = remember { Intent(Intent.ACTION_VIEW, Uri.parse("https://www.linkedin.com/in/ben-riegel-220b33173/")) }
+            context.startActivity(intent)
+        }
+
+        composable(route = Screen.Twitter.route){
+            val context = LocalContext.current
+            val intent = remember { Intent(Intent.ACTION_VIEW, Uri.parse("https://twitter.com/DrSchokoriegel")) }
+            context.startActivity(intent)
+        }
+
+        composable(route = Screen.Github.route){
+            val context = LocalContext.current
+            val intent = remember { Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/BenSchokoRiegel?tab=overview&from=2023-01-01&to=2023-01-23")) }
+            context.startActivity(intent)
+        }
 //        composable(route = Screen.CreateNote.route) {
 //            CreateNote(navController)
 //        }
 
     }
 }
+
+
 
 // an Example app to test the Composable for profil and Scrore
 fun exampleGame(sharedViewModel: SharedViewModel){
