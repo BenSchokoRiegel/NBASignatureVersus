@@ -1,9 +1,7 @@
 package com.example.nbasignatureversus
 
 sealed class Screen(val route: String){
-    class WinnerScreen {
 
-    }
 
 
     object Twitter : Screen("Twitter")
@@ -17,5 +15,6 @@ sealed class Screen(val route: String){
 
 
 
-}
 
+
+}

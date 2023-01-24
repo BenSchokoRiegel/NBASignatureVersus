@@ -16,13 +16,20 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 
 
+
 @Composable
 fun Navigation() {
     val navController = rememberNavController()
     val sharedViewModel: SharedViewModel = viewModel()
     exampleGame(sharedViewModel)
 
-    NavHost(navController = navController, startDestination = Screen.GameScreen.route) {
+
+
+    NavHost(navController = navController, startDestination = Screen.GameOver.route) {
+
+
+
+
         composable(route = Screen.GameScreen.route) {
             Screen()
             GameScreenTopBar(navController,sharedViewModel )
@@ -64,6 +71,7 @@ fun Navigation() {
 
 
 
+
 // an Example app to test the Composable for profil and Scrore
 fun exampleGame(sharedViewModel: SharedViewModel){
     sharedViewModel.updatePlayer1(Player("Ben Jasper Riegel",Level.Pro,R.drawable.profil_ben))
@@ -73,6 +81,8 @@ fun exampleGame(sharedViewModel: SharedViewModel){
 }
 
 
+
+// stops screen rotation
 // Quelle : https://stackoverflow.com/questions/69230049/how-to-force-orientation-for-some-screens-in-jetpack-compose
 
 @Composable

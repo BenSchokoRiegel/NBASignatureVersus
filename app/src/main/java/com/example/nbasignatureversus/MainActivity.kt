@@ -17,6 +17,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
 import coil.ImageLoader
 import coil.compose.rememberAsyncImagePainter
 import coil.decode.GifDecoder
@@ -26,10 +28,20 @@ import coil.size.Size
 import com.bumptech.glide.Glide
 import com.example.nbasignatureversus.ui.theme.NBASIgnatureVersusTheme
 
+
+
 class MainActivity : ComponentActivity() {
+
+
+
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setContent {
+
+
             Navigation()
         }
     }

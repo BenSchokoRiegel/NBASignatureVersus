@@ -1,8 +1,5 @@
 package com.example.nbasignatureversus
 
-
-import android.content.Intent
-import android.net.Uri
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -36,16 +33,26 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.unit.toSize
 import androidx.core.content.ContextCompat.startActivity
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
 import androidx.navigation.NavController
 import com.example.nbasignatureversus.ui.theme.NBASIgnatureVersusTheme
+
+
 
 
 val topAndBottomColor: Color = "#db711e".color
 
 val playerPadding = 10.dp
 
+
+private lateinit var dataStore : DataStore<Preferences>
+
+
+
 @Composable
 fun Settings(navController: NavController, sharedViewModel: SharedViewModel) {
+
 
 
     NBASIgnatureVersusTheme(darkTheme = false) {
@@ -60,6 +67,7 @@ fun Settings(navController: NavController, sharedViewModel: SharedViewModel) {
                         listOf(
                             IconsForGame(R.drawable.icon_home, "Home"),
                             IconsForGame(R.drawable.icon_start, "New"),
+                            //IconsForGame(R.drawable.icon_reset, "Reset"),
                             IconsForGame(R.drawable.icon_save, "Save"),
 
                             ), sharedViewModel
@@ -72,6 +80,7 @@ fun Settings(navController: NavController, sharedViewModel: SharedViewModel) {
                             IconsForGame(R.drawable.icon_home, "Home"),
                             IconsForGame(R.drawable.icon_continue, "Continue"),
                             IconsForGame(R.drawable.icon_new, "New"),
+                           // IconsForGame(R.drawable.icon_reset, "Reset"),
                             IconsForGame(R.drawable.icon_save, "Save"),
                         ), sharedViewModel
                     )
@@ -178,6 +187,9 @@ fun Player(player:Player){
             contentDescription = null,
             modifier = Modifier
                 .alpha(1f)
+                .width(75.dp)
+                .height(75.dp)
+                .padding(10.dp)
                 .clickable {
                     // navController.navigate(Screen.Twitter.route)
                 },
@@ -188,6 +200,9 @@ fun Player(player:Player){
             contentDescription = null,
             modifier = Modifier
                 .alpha(1f)
+                .width(75.dp)
+                .height(75.dp)
+                .padding(10.dp)
                 .clickable {
                     // navController.navigate(Screen.Twitter.route)
                 },
@@ -544,6 +559,7 @@ fun Topbar(backgroundColor: Color, topBarText: String,navController: NavControll
 
     )
 }
+
 
 
 
