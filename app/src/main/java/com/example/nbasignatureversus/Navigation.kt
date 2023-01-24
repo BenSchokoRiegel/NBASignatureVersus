@@ -1,7 +1,11 @@
 package com.example.nbasignatureversus
 
 import GameOver
+import android.app.Activity
+import android.content.Context
+import android.content.ContextWrapper
 import android.content.Intent
+import android.content.pm.ActivityInfo
 import android.net.Uri
 import androidx.compose.runtime.*
 import androidx.compose.ui.platform.LocalContext
@@ -20,14 +24,17 @@ fun Navigation() {
 
     NavHost(navController = navController, startDestination = Screen.GameScreen.route) {
         composable(route = Screen.GameScreen.route) {
+            Screen()
             GameScreenTopBar(navController,sharedViewModel )
 
         }
         composable(route = Screen.GameSettingScreen.route){
+            Screen()
             Settings(navController = navController, sharedViewModel = sharedViewModel)
         }
 
         composable(route = Screen.GameOver.route){
+            Screen()
             GameOver(navController = navController, sharedViewModel = sharedViewModel)
         }
 
@@ -63,10 +70,33 @@ fun exampleGame(sharedViewModel: SharedViewModel){
     //sharedViewModel.updatePlayer1(Player("Harold Hide The Pain",Level.Rookie,R.drawable.profil_harold))
     //sharedViewModel.updatePlayer2(Player("Marina Doronina",Level.Rookie,R.drawable.profil_marina))
     sharedViewModel.updatePlayer2(Player("Matt",Level.Athlete,R.drawable.profil_matt))
-
-
-
-
 }
 
+
+// Quelle : https://stackoverflow.com/questions/69230049/how-to-force-orientation-for-some-screens-in-jetpack-compose
+
+@Composable
+fun LockScreenOrientation(orientation: Int) {
+    val context = LocalContext.current
+    DisposableEffect(Unit) {
+        val activity = context.findActivity() ?: return@DisposableEffect onDispose {}
+        val originalOrientation = activity.requestedOrientation
+        activity.requestedOrientation = orientation
+        onDispose {
+            // restore original orientation when view disappears
+            activity.requestedOrientation = originalOrientation
+        }
+    }
+}
+// Quelle : https://stackoverflow.com/questions/69230049/how-to-force-orientation-for-some-screens-in-jetpack-compose
+fun Context.findActivity(): Activity? = when (this) {
+    is Activity -> this
+    is ContextWrapper -> baseContext.findActivity()
+    else -> null
+}
+// Inspiriert by : https://stackoverflow.com/questions/69230049/how-to-force-orientation-for-some-screens-in-jetpack-compose
+@Composable
+fun Screen() {
+    LockScreenOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
+}
 
