@@ -1,4 +1,4 @@
-package com.aseemwangoo.handsonkotlin.HelperComponents
+package com.aseemwangoo.handsonkotlin
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
@@ -22,14 +22,15 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import androidx.navigation.compose.navigate
+import com.aseemwangoo.handsonkotlin.HelperComponents.SharedViewModel
+import com.aseemwangoo.handsonkotlin.Screen
 import com.aseemwangoo.handsonkotlin.defaultPadding
 import topAndBottomColor
 
 
-//import androidx.navigation.compose.navigate
+import androidx.navigation.compose.navigate
 
-class IconsForGame(val location: Int, val function: String) {}
+public class IconsForGame(val location: Int, val function: String) {}
 
 
 

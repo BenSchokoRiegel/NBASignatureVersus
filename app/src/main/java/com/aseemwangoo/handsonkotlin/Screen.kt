@@ -1,4 +1,4 @@
-package com.aseemwangoo.handsonkotlin.HelperComponents
+package com.aseemwangoo.handsonkotlin
 
 sealed class Screen(val route: String){
 

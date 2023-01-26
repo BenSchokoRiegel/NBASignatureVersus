@@ -4,6 +4,7 @@ package com.aseemwangoo.handsonkotlin.HelperComponents
 import android.graphics.Color.parseColor
 import android.icu.text.CaseMap.Title
 import androidx.compose.ui.graphics.Color
+import com.aseemwangoo.handsonkotlin.R
 
 
 fun createAllDiffs(): List<Gif> {

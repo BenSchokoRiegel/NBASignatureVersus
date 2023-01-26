@@ -1,6 +1,5 @@
 package com.aseemwangoo.handsonkotlin
 
-import android.app.Application
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -13,7 +12,6 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
-import androidx.compose.material.BottomNavigation
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.*
@@ -35,17 +33,14 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.unit.toSize
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.aseemwangoo.handsonkotlin.HelperComponents.*
-import com.aseemwangoo.handsonkotlin.Screen
-
-import com.example.nbasignatureversus.RoomDatabase.PlayerInDB
-import com.example.nbasignatureversus.RoomDatabase.PlayerViewModel
-import com.example.nbasignatureversus.RoomDatabase.PlayerViewModelFactory
+import com.aseemwangoo.handsonkotlin.ui.theme.HandsOnKotlinTheme
 
 
 
+
+import androidx.navigation.compose.navigate
 
 
 
@@ -64,7 +59,7 @@ fun Settings(navController: NavController, sharedViewModel: SharedViewModel) {
     val context = LocalContext.current
     //val playerViewModel: PlayerViewModel = viewModel(factory = PlayerViewModelFactory(context.applicationContext as Application) )
 
-    App(darkTheme = false) {
+    HandsOnKotlinTheme(darkTheme = false) {
         // A surface container using the 'background' color from the theme
         Scaffold(
             topBar = { Topbar(topAndBottomColor, " Settings ", navController = navController) },

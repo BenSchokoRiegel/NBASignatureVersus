@@ -1,26 +1,15 @@
-import android.content.res.Resources.Theme
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.paint
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-
-
-
 import androidx.navigation.NavController
-import com.aseemwangoo.handsonkotlin.HelperComponents.BottomNavigation
-import com.aseemwangoo.handsonkotlin.HelperComponents.HeaderSetting
-import com.aseemwangoo.handsonkotlin.HelperComponents.IconsForGame
+import com.aseemwangoo.handsonkotlin.*
 import com.aseemwangoo.handsonkotlin.HelperComponents.SharedViewModel
-import com.aseemwangoo.handsonkotlin.Topbar
 import com.aseemwangoo.handsonkotlin.ui.theme.HandsOnKotlinTheme
 
 
@@ -28,6 +17,7 @@ val String.color
     get() = Color(android.graphics.Color.parseColor(this))
 
 val topAndBottomColor: Color = "#db711e".color
+
 
 @Composable
 fun GameOver(navController: NavController, sharedViewModel: SharedViewModel) {
@@ -42,9 +32,10 @@ fun GameOver(navController: NavController, sharedViewModel: SharedViewModel) {
                     navController,
                     items =
                     listOf(
+
                         IconsForGame(R.drawable.icon_home, "Home"),
                         IconsForGame(R.drawable.icon_settings, "Settings"),
-                        //IconsForGame(R.drawable.icon_new, "New"),
+                        IconsForGame(R.drawable.icon_new, "New"),
                         IconsForGame(R.drawable.icon_replay, "New"),
 
                         ), sharedViewModel

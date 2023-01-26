@@ -35,19 +35,22 @@ import androidx.compose.ui.unit.sp
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.navigation.NavController
+
+import com.aseemwangoo.handsonkotlin.HelperComponents.*
+import com.aseemwangoo.handsonkotlin.ui.theme.HandsOnKotlinTheme
+import org.w3c.dom.Text
+import java.io.BufferedReader
+
+
+/*
 import coil.ImageLoader
 import coil.compose.rememberAsyncImagePainter
 import coil.decode.GifDecoder
 import coil.decode.ImageDecoderDecoder
 import coil.request.ImageRequest
 import coil.size.Size
-import com.android.volley.toolbox.ImageLoader
-import com.aseemwangoo.handsonkotlin.HelperComponents.*
-import com.aseemwangoo.handsonkotlin.ui.theme.HandsOnKotlinTheme
+*/
 
-
-import org.w3c.dom.Text
-import java.io.BufferedReader
 
 var defaultPadding = 3.dp
 val fontname = FontFamily(Font(R.font.android))
@@ -401,6 +404,7 @@ fun GifImage(
     gifLocation: Int,
     modifier: Modifier = Modifier
 ) {
+    /*
     val context = LocalContext.current
     val imageLoader = ImageLoader.Builder(context)
         .components {
@@ -422,5 +426,5 @@ fun GifImage(
             .fillMaxWidth()
             .fillMaxHeight()
 
-    )
+    ) */
 }

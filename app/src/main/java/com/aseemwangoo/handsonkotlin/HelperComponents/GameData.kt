@@ -1,5 +1,6 @@
 package com.aseemwangoo.handsonkotlin.HelperComponents
 
+import com.aseemwangoo.handsonkotlin.R
 import kotlin.random.Random
 
 enum class Level {
@@ -43,8 +44,8 @@ fun gameHasStarted(){
 }
 
 
-class Player(var name: String, var level: Level, var picture: Int) {
-    constructor(name:String):this(name,Level.Pro,R.drawable.ic_launcher_foreground)
+public class Player(var name: String, var level: Level, var picture: Int) {
+    constructor(name:String):this(name,Level.Pro, R.drawable.ic_launcher_foreground)
 
 
 
@@ -53,7 +54,7 @@ class Player(var name: String, var level: Level, var picture: Int) {
 
 
 // #TODO Free play modus -> with or without
-class GameScore(var player1_score:Int, var player2_score:Int, var player1_turn: Boolean, var maxScore:Int, var hasStarted:Boolean){
+public class GameScore(var player1_score:Int, var player2_score:Int, var player1_turn: Boolean, var maxScore:Int, var hasStarted:Boolean){
 
     constructor():this(0,0, Random.nextBoolean(),11,hasStarted = false)
 }
