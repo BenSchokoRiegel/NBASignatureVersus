@@ -5,13 +5,14 @@ plugins {
 }
 
 android {
-    compileSdk 30
-    buildToolsVersion "30.0.3"
+   // compileSdk 30
+    compileSdk 33
+    //buildToolsVersion "31.0.3"
 
     defaultConfig {
         applicationId "com.aseemwangoo.handsonkotlin"
         minSdk 21
-        targetSdk 30
+        targetSdk 33
         versionCode 1
         versionName "1.0"
 
@@ -33,20 +34,21 @@ android {
     }
     kotlinOptions {
         jvmTarget = '1.8'
-        useIR = true
+//        useIR = true
     }
     buildFeatures {
         compose true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion compose_version
-        kotlinCompilerVersion '1.4.32'
+        kotlinCompilerExtensionVersion "1.4.0"
+        kotlinCompilerVersion '1.7.0'
     }
 
     packagingOptions {
         exclude "META-INF/AL2.0"
         exclude "META-INF/LGPL2.1"
     }
+    namespace 'com.aseemwangoo.handsonkotlin'
 }
 
 dependencies {
@@ -56,47 +58,49 @@ dependencies {
     def nav_version = "2.3.5"
 
     //implementation 'androidx.core:core-ktx:1.3.2'
-    implementation 'androidx.core:core-ktx:1.3.2'
+    implementation 'androidx.core:core-ktx:1.9.0'
 
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'com.google.android.material:material:1.2.1'
-    implementation "androidx.compose.ui:ui:$compose_version"
-    implementation "androidx.compose.material:material:$compose_version"
-    implementation "androidx.compose.ui:ui-tooling:$compose_version"
-    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.3.0-alpha06'
-    implementation 'androidx.activity:activity-compose:1.3.0-alpha02'
+    implementation 'androidx.appcompat:appcompat:1.6.0'
+    implementation 'com.google.android.material:material:1.8.0'
+    implementation "androidx.compose.ui:ui:1.3.3"
 
-    implementation "androidx.compose.runtime:runtime-livedata:$compose_version"
-    implementation "androidx.lifecycle:lifecycle-viewmodel-compose:1.0.0-alpha02"
+    implementation "androidx.compose.material:material:1.4.0-alpha04"
+    implementation "androidx.compose.ui:ui-tooling:1.4.0-alpha04"
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.6.0-alpha04'
+
+    implementation 'androidx.activity:activity-compose:1.7.0-alpha03'
+
+    implementation "androidx.compose.runtime:runtime-livedata:1.4.0-alpha04"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-compose:2.6.0-alpha04"
 
     // FOR ROOM
-    implementation "androidx.room:room-runtime:$room_version"
-    kapt "androidx.room:room-compiler:$room_version"
+    implementation "androidx.room:room-runtime:2.5.0"
+    kapt "androidx.room:room-compiler:2.5.0"
     // optional - Kotlin Extensions and Coroutines support for Room
-    implementation "androidx.room:room-ktx:$room_version"
+    implementation "androidx.room:room-ktx:2.5.0"
     // END FOR ROOM
 
     // FOR NAVIGATION
     // Java language implementation
-    implementation "androidx.navigation:navigation-fragment:$nav_version"
-    implementation "androidx.navigation:navigation-ui:$nav_version"
+    implementation "androidx.navigation:navigation-fragment-ktx:2.5.3"
+    implementation "androidx.navigation:navigation-ui-ktx:2.5.3"
 
     // Kotlin
-    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
-    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-fragment-ktx:2.5.3"
+    implementation "androidx.navigation:navigation-ui-ktx:2.5.3"
 
     // Feature module Support
-    implementation "androidx.navigation:navigation-dynamic-features-fragment:$nav_version"
+    implementation "androidx.navigation:navigation-dynamic-features-fragment:2.5.3"
 
     // Testing Navigation
-    androidTestImplementation "androidx.navigation:navigation-testing:$nav_version"
-    implementation "androidx.navigation:navigation-compose:1.0.0-alpha10"
+    androidTestImplementation "androidx.navigation:navigation-testing:2.5.3"
+    implementation "androidx.navigation:navigation-compose:2.6.0-alpha04"
     // END FOR NAVIGATION
 
-    testImplementation 'junit:junit:4.+'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
-    androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
+   // testImplementation 'junit:junit:'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    androidTestImplementation "androidx.compose.ui:ui-test-junit4:1.4.0-alpha04"
 
     // STUff I CHANGED OR DEACTIATED
    // implementation "androidx.navigation:navigation-compose:1.0.0-alpha10" to
@@ -117,8 +121,8 @@ dependencies {
 
 
     // what would work
-    implementation "io.coil-kt:coil-compose:2.1.0"
-    implementation "io.coil-kt:coil-gif:2.1.0"
+    implementation "io.coil-kt:coil-compose:2.2.2"
+    //implementation "io.coil-kt:coil-gif:2.1.0"
 
     //implementation "io.coil-kt:coil:1.13.0"
     //implementation "io.coil-kt:coil-gif:$compose_version"
