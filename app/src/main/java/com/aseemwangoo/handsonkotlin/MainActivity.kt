@@ -27,7 +27,7 @@ import com.aseemwangoo.handsonkotlin.database.TodoItem
 import com.aseemwangoo.handsonkotlin.database.TodoViewModel
 import com.aseemwangoo.handsonkotlin.database.TodoViewModelFactory
 
-import androidx.navigation.compose.navigate
+
 
 class MainActivity : ComponentActivity() {
 

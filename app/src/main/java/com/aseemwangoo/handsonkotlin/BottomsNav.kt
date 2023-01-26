@@ -28,7 +28,7 @@ import com.aseemwangoo.handsonkotlin.defaultPadding
 import topAndBottomColor
 
 
-import androidx.navigation.compose.navigate
+
 
 public class IconsForGame(val location: Int, val function: String) {}
 

@@ -26,7 +26,7 @@ import com.aseemwangoo.handsonkotlin.database.TodoItem
 import com.aseemwangoo.handsonkotlin.database.TodoViewModel
 import com.aseemwangoo.handsonkotlin.database.TodoViewModelFactory
 
-import androidx.navigation.compose.navigate
+
 
 @Composable
 fun AddView(navController: NavController) {
