@@ -16,6 +16,7 @@ import org.kabiri.android.noteroom.ui.home.HomeScreen
 import org.kabiri.android.noteroom.ui.theme.NoteRoomTheme
 import org.kabiri.android.noteroom.viewmodel.HomeViewModel
 
+/*
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,7 +38,17 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
+} */
+
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContent {
+            Navigation()
+        }
+    }
 }
+
 
 @Composable
 fun Greeting(name: String) {
