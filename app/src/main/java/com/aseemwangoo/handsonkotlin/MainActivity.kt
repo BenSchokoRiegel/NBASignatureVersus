@@ -34,7 +34,8 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            NavigationComponent()
+           // NavigationComponent()
+            Navigation()
         }
 
 //        itemViewModel.isDone.observe(this, { status ->

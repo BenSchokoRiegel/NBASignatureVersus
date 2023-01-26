@@ -42,14 +42,14 @@ import org.w3c.dom.Text
 import java.io.BufferedReader
 
 
-/*
+
 import coil.ImageLoader
-import coil.compose.rememberAsyncImagePainter
+//import coil.compose.rememberAsyncImagePainter
 import coil.decode.GifDecoder
 import coil.decode.ImageDecoderDecoder
 import coil.request.ImageRequest
 import coil.size.Size
-*/
+
 
 
 var defaultPadding = 3.dp
@@ -404,7 +404,7 @@ fun GifImage(
     gifLocation: Int,
     modifier: Modifier = Modifier
 ) {
-    /*
+
     val context = LocalContext.current
     val imageLoader = ImageLoader.Builder(context)
         .components {
@@ -426,5 +426,7 @@ fun GifImage(
             .fillMaxWidth()
             .fillMaxHeight()
 
-    ) */
+    )
+
+
 }

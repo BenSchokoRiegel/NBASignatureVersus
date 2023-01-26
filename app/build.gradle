@@ -102,8 +102,26 @@ dependencies {
 
     // NEW STUFFF
     // COIL
+
+        // Working STuff
+   // implementation "io.coil-kt:coil:1.13.0"
+    //implementation("io.coil-kt:coil-gif:0.13.0")
+    //implementation "io.coil-kt:coil:1.4.0"
+    //implementation("io.coil-kt:coil-gif:1.4.0")
+
+    // Try out
+    implementation("io.coil-kt:coil-compose:2.0.0")
+    implementation "io.coil-kt:coil-compose:2.0.0"
+
+
+    //implementation "io.coil-kt:coil:1.13.0"
+    //implementation "io.coil-kt:coil-gif:$compose_version"
+    //implementation("io.coil-kt:coil:0.13.0")
+    //implementation("io.coil-kt:coil-gif:0.13.0")
+
+    //implementation("io.coil-kt:coil-compose:2.2.2")
     //implementation "io.coil-kt:coil-compose:2.1.0"
-    //implementation "io.coil-kt:coil-gif:2.1.0"
+    //implementation "io.coil-kt:coil-gif:$nav_version"
 
 
 }
