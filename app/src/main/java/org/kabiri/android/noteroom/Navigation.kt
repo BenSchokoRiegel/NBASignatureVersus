@@ -21,7 +21,7 @@ fun Navigation() {
     val sharedViewModel: SharedViewModel = viewModel()
     exampleGame(sharedViewModel)
 
-    NavHost(navController = navController, startDestination = Screen.GameScreen.route) {
+    NavHost(navController = navController, startDestination = Screen.GameOver.route) {
         composable(route = Screen.GameScreen.route) {
             Screen()
             GameScreenTopBar(navController,sharedViewModel )
