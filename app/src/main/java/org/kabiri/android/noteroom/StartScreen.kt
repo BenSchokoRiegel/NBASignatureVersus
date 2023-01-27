@@ -6,6 +6,7 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Scaffold
+import androidx.compose.material3.IconButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -24,7 +25,7 @@ fun S_Screen(navController: NavController, sharedViewModel:SharedViewModel) {
     NoteRoomTheme(darkTheme = false) {
         // A surface container using the 'background' color from the theme
         Scaffold(
-            topBar = { Topbar(topAndBottomColor, " Choose Player", navController = navController) },
+            topBar = { Topbar(topAndBottomColor, " Start Playing ", navController = navController) },
             bottomBar = {
 
                     BottomNavigation(
@@ -32,7 +33,7 @@ fun S_Screen(navController: NavController, sharedViewModel:SharedViewModel) {
                         items =
                         listOf(
                             //IconsForGame(R.drawable.icon_settings, "Settings"),
-                            IconsForGame(R.drawable.icon_continue, "continue"),
+                            IconsForGame(R.drawable.icon_continue, "New"),
                             //IconsForGame(R.drawable.icon_reset, "Reset"),
                             IconsForGame(R.drawable.icon_help, "help"),
                             ), sharedViewModel
@@ -54,7 +55,7 @@ fun show_start_icons(navController: NavController){
     Column(
         Modifier
             .fillMaxWidth()
-            .padding(25.dp,25.dp)
+            .padding(25.dp, 25.dp)
 
     ){
         Row( Modifier
@@ -65,15 +66,18 @@ fun show_start_icons(navController: NavController){
 
             )
         }
-        Row(Modifier
-            .fillMaxWidth().padding(bottom = 25.dp)){
-            Image(
-                painter = painterResource(id = R.drawable.start_screen_bottom),
-                contentDescription = null,
-                modifier = Modifier.clickable {
-                    navController.navigate(Screen.GameSettingScreen.route)
-                }
-            )
+        Row(
+            Modifier
+                .fillMaxWidth()
+                .padding(bottom = 25.dp)){
+            IconButton(onClick = { navController.navigate(Screen.GameSettingScreen.route) }) {
+                Image(
+                    painter = painterResource(id = R.drawable.start_screen_bottom),
+                    contentDescription = null,
+                )
+            }
+
+
         }
 
 
