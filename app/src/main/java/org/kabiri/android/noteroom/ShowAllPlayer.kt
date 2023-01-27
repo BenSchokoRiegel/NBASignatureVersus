@@ -167,7 +167,7 @@ fun Rasterlayout1(navController: NavController,
                     if (isFirst){
                         sharedViewModel.player1.name = note.playername
                         sharedViewModel.player1.level = createLevel(note.playerLevel)
-                        sharedViewModel.player2.picture = note.playerBildLocation.toInt()
+                        sharedViewModel.player1.picture = note.playerBildLocation.toInt()
                     } else {
                         sharedViewModel.player2.name = note.playername
                         sharedViewModel.player2.level = createLevel(note.playerLevel)

@@ -1,9 +1,15 @@
 package org.kabiri.android.noteroom
 
+import org.kabiri.android.noteroom.ui.theme.NoteRoomTheme
+
+
+import android.graphics.ImageFormat
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
+import androidx.camera.core.ImageCapture
+import androidx.camera.core.impl.ImageCaptureConfig
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -18,6 +24,19 @@ import org.kabiri.android.noteroom.ui.home.testDataBase
 import org.kabiri.android.noteroom.ui.theme.NoteRoomTheme
 import org.kabiri.android.noteroom.viewmodel.HomeViewModel
 import org.kabiri.android.noteroom.viewmodel.PlayerViewModel
+
+
+import android.content.Context
+//import androidx.camera.core.ImageCapture
+//import androidx.camera.core.ImageCaptureConfig
+//import androidx.compose.Composable
+import java.io.File
+import java.io.FileOutputStream
+import java.io.IOException
+
+
+
+
 
 /*
 @AndroidEntryPoint
@@ -58,21 +77,15 @@ val playerViewModel: PlayerViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-         //   Navigation(playerViewModel = playerViewModel)
+            Navigation(playerViewModel = playerViewModel)
 
         }
     }
 }
 
-@Composable
-fun takeAndSavePhoto() {
-    val imageCapture = ImageCapture(imageCaptureConfig)
-    val image = imageCapture.takePicture()
 
-    // Save the image to the "drawable" folder
-    val file = File(context.getDrawable(R.drawable.your_file_name).toString())
-    image.save(file, ImageFormat.JPEG)
-}
+
+
 
 
 @Composable
@@ -87,3 +100,5 @@ fun DefaultPreview() {
         Greeting("Android")
     }
 }
+
+

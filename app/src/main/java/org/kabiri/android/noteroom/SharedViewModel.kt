@@ -62,12 +62,21 @@ class SharedViewModel : ViewModel() {
 
 
     fun getWinner(): Player {
-        gameScore.hasStarted = false
+
         if (gameScore.player1_score > gameScore.player2_score ) {
+            gameFinish()
             return player1
         } else {
+            gameFinish()
             return player2
         }
+
+    }
+
+    fun gameFinish(){
+        gameScore.player1_score = 0
+        gameScore.player2_score = 0
+        gameScore.hasStarted = false
     }
 
 

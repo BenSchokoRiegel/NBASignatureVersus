@@ -24,7 +24,7 @@ import java.util.*
 
 val topAndBottomColor: Color = "#db711e".color
 
-
+/*
 @Composable
 fun GameOver(navController: NavController, sharedViewModel: SharedViewModel) {
 
@@ -80,7 +80,7 @@ fun WinnerScreen(sharedViewModel: SharedViewModel, d : Int) {
                     .padding(horizontal = 100.dp, vertical = 100.dp)
             ) {
                 Image(
-                    painter = painterResource(id = sharedViewModel.player2.picture),
+                    painter = painterResource(id = sharedViewModel.getWinner().picture),
                     contentDescription = null,
                     modifier = Modifier
                         .height(400.dp)
@@ -146,3 +146,4 @@ fun WinnerScreen(sharedViewModel: SharedViewModel) {
     }
 }
 
+*/

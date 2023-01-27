@@ -1,6 +1,7 @@
 package org.kabiri.android.noteroom
 
-import GameOver
+
+import Winner_Screen
 import android.app.Activity
 import android.content.Context
 import android.content.ContextWrapper
@@ -23,7 +24,8 @@ fun Navigation(playerViewModel : PlayerViewModel) {
     val sharedViewModel: SharedViewModel = viewModel()
     exampleGame(sharedViewModel)
 
-    NavHost(navController = navController, startDestination = Screen.GameSettingScreen.route) {
+   // NavHost(navController = navController, startDestination = Screen.GameSettingScreen.route) {
+    NavHost(navController = navController, startDestination = Screen.Winner.route) {
 
         composable(route = Screen.ShowAllPlayer.route) {
             Screen()
@@ -46,10 +48,7 @@ fun Navigation(playerViewModel : PlayerViewModel) {
             Settings(navController = navController, sharedViewModel = sharedViewModel,playerViewModel)
         }
 
-        composable(route = Screen.GameOver.route){
-            Screen()
-            GameOver(navController = navController, sharedViewModel = sharedViewModel)
-        }
+
 
         composable(route = Screen.LinkedIn.route){
             val context = LocalContext.current
@@ -68,6 +67,11 @@ fun Navigation(playerViewModel : PlayerViewModel) {
             val intent = remember { Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/BenSchokoRiegel?tab=overview&from=2023-01-01&to=2023-01-23")) }
             context.startActivity(intent)
         }
+
+        composable(route = Screen.Winner.route){
+            Screen()
+            Winner_Screen(navController = navController, sharedViewModel = sharedViewModel)
+        }
 //        composable(route = Screen.CreateNote.route) {
 //            CreateNote(navController)
 //        }
@@ -81,10 +85,10 @@ fun Navigation(playerViewModel : PlayerViewModel) {
 fun exampleGame(sharedViewModel: SharedViewModel){
     //sharedViewModel.updatePlayer1(Player("Ben Jasper Riegel", Level.Pro,R.drawable.profil_ben))
   //  sharedViewModel.updatePlayer1(Player("Harold Hide The Pain",Level.Rookie,R.drawable.profil_harold))
-  //  sharedViewModel.updatePlayer2(Player("Marina Doronina",Level.Rookie,R.drawable.profil_marina))
-    //sharedViewModel.updatePlayer2(Player("Matt", Level.Athlete,R.drawable.profil_matt))
-    sharedViewModel.updatePlayer1(Player("Harold Hide The Pain",Level.Rookie,R.drawable.profil_harold))
-    sharedViewModel.updatePlayer2(Player("Marina Doronina",Level.Rookie,R.drawable.profil_marina))
+    //sharedViewModel.updatePlayer2(Player("Marina",Level.Rookie,R.drawable.profil_marina))
+  //  sharedViewModel.updatePlayer2(Player("Matt", Level.Athlete,R.drawable.profil_matt))
+  //  sharedViewModel.updatePlayer1(Player("Harold Hide The Pain",Level.Rookie,R.drawable.profil_harold))
+  //  sharedViewModel.updatePlayer2(Player("Marina ",Level.Rookie,R.drawable.profil_marina))
 }
 
 

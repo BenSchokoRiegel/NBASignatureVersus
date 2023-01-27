@@ -10,6 +10,8 @@ sealed class Screen(val route: String){
     object Github : Screen("Github")
     object LinkedIn : Screen("LinkedIn")
     object GameOver : Screen("GameOver")
+    object Winner : Screen("Winner")
+
     object StartScreen : Screen("StartScreen")
     object GameSettingScreen : Screen("GameSettingScreen")
     object GameScreen : Screen("GameScreen")

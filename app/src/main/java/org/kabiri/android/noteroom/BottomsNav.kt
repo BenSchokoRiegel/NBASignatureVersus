@@ -170,7 +170,7 @@ fun createIcons(
                     print("MakeShoot")
                     val gameover : Boolean = sharedViewModel.makeShot()
                     if (gameover){
-                        navController.navigate(Screen.GameOver.route)
+                        navController.navigate(Screen.Winner.route)
                     } else {
                         navController.navigate(Screen.GameScreen.route)
                     }
