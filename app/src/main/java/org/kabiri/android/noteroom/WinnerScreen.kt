@@ -77,12 +77,17 @@ fun EndScreen(sharedViewModel: SharedViewModel, d : String) {
     val configuration = LocalConfiguration.current
    // val screenWidth = configuration.screenWidthDp.dp
     //val screenHeight = configuration.screenHeightDp.dp
+
+  //  val pl1:Player = sharedViewModel.player1
+  //  val pl2:Player = sharedViewModel.player2
+ //   val gameScore:GameScore = sharedViewModel.gameScore
+ //   val color: Color = "#FFFFFF".color
     ConstraintLayout() {
         val (title, description) = createRefs()
         Box(
             modifier = Modifier
-                .padding(0.dp,50.dp)
-            //    .background(color = Red)
+                .padding(0.dp, 50.dp)
+                //    .background(color = Red)
                 //.fillMaxWidth(0.4f)
                 .constrainAs(title) {
                     top.linkTo(parent.top)
@@ -95,7 +100,9 @@ fun EndScreen(sharedViewModel: SharedViewModel, d : String) {
             Image(
                 painter = painterResource(id = sharedViewModel.getWinner().picture),
                 contentDescription = null,
-                modifier = Modifier.fillMaxWidth(0.30514f).fillMaxHeight(0.161538f)
+                modifier = Modifier
+                    .fillMaxWidth(0.30514f)
+                    .fillMaxHeight(0.161538f)
 
             )
         }
@@ -113,12 +120,13 @@ fun EndScreen(sharedViewModel: SharedViewModel, d : String) {
                 }
         ) {
             Image(
-                painterResource(id = R.drawable.winner_new),
+                painterResource(id = R.drawable.finale_winning),
                 contentDescription = "",
                 //contentScale = ContentScale.FillBounds, // or some other scale
                 modifier = Modifier.fillMaxWidth()
             )
         }
+      //  TopLayer(player1 = pl1, player2 = pl2 , gameScore = gameScore, color = color)
     }
 }
 
