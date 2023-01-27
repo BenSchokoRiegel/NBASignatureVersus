@@ -137,14 +137,8 @@ fun ShowAllPlayers(navController: NavController,
 fun Rasterlayout1(navController: NavController,
                   sharedViewModel: SharedViewModel,
                   playerViewModel: PlayerViewModel, isFirst: Boolean) {
-    val txtState = rememberSaveable { mutableStateOf("") }
-
-    var pl: MutableState<PlayerEntity?> = rememberSaveable { mutableStateOf(null) }
 
 
-    val noteIdState: MutableState<Long?> = rememberSaveable { mutableStateOf(null) }
-    val popupState =
-        rememberSaveable { mutableStateOf(org.kabiri.android.noteroom.PopupState.Close) }
     val noteListState = playerViewModel.noteListFlow.collectAsState(initial = listOf())
     LazyVerticalGrid(
         cells = GridCells.Fixed(2),
@@ -230,15 +224,25 @@ fun Rasterlayout1(navController: NavController,
                             .fillMaxSize()
                     ) {
                       //  var x: Int = note.playerBildLocation
-                        var a: Int = R.drawable.profil_ben
-                        var b = R.drawable.profil_ben.toString()
-                        var i = Drawable.createFromPath("R.drawable.profil_ben")
+                    //    var a: Int = R.drawable.profil_ben
+                  //      var b = R.drawable.profil_ben.toString()
+                       var i = Drawable.createFromPath("R.drawable.profil_ben")
+                        var xd = Drawable.createFromPath("R.drawable.Doronina")
+                     //   var xs = Drawable.createFromPath("R.drawable.profil_ben")
                       //  var x = R.drawable.icon_save.toString()
-                        var z = note.playerBildLocation.toString()
-                        var xs : Int = z.toInt()
+
+                        var z = note.playerBildLocation
+                   //     var zx = note.playerBildLocation.toString()
+
+
+                      //  var xs : Int = z.toInt()
+                        val painter = painterResource(z.toInt()) ?: painterResource(R.drawable.ic_launcher_foreground)
+              //          var paint = painterResource(id = xs)
                         Image(
                         //    bitmap = note.playerBitmap.asImageBitmap(),
-                             painterResource(z.toInt()),
+                           //  painterResource(z.toInt()),
+                        //   painterResource(z.toInt()),
+                            painter = painter,
                            // painterResource(i),
                             contentDescription = null,
                             modifier = Modifier
@@ -262,7 +266,8 @@ fun Rasterlayout1(navController: NavController,
                             contentDescription = null,
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .fillMaxSize().clickable {
+                                .fillMaxSize()
+                                .clickable {
                                     playerViewModel.deletePlayer(note)
                                 },
                         )
@@ -280,167 +285,6 @@ fun Rasterlayout1(navController: NavController,
 
 
 
-@OptIn(ExperimentalFoundationApi::class, ExperimentalFoundationApi::class)
-@Composable
-fun Rasterlayout(navController: NavController,
-                 sharedViewModel: SharedViewModel,
-                 playerViewModel: PlayerViewModel, isFirst: Boolean) {
-    val txtState = rememberSaveable { mutableStateOf("") }
-
-    var pl : MutableState<PlayerEntity?> = rememberSaveable { mutableStateOf(null) }
-
-
-    val noteIdState: MutableState<Long?> = rememberSaveable { mutableStateOf(null) }
-    val popupState = rememberSaveable { mutableStateOf(org.kabiri.android.noteroom.PopupState.Close) }
-    val noteListState = playerViewModel.noteListFlow.collectAsState(initial = listOf())
-    LazyVerticalGrid(
-        cells = GridCells.Fixed(3),  Modifier.padding(10.dp),verticalArrangement = Arrangement.spacedBy(16.dp),
-        horizontalArrangement = Arrangement.spacedBy(16.dp),
-
-        )
-
-    {
-        items(noteListState.value.size) { index ->
-                val note = noteListState.value[index]
-
-            var background = topAndBottomColor;
-
-
-
-            Card(
-                modifier = Modifier.clickable {
-                 //   popupState.value = org.kabiri.android.noteroom.PopupState.Open
-                    //noteIdState.value = note.roomId
-                 //   pl.value = noteListState.value[index]
-                    if (isFirst){
-                        sharedViewModel.player1.name = note.playername
-                        sharedViewModel.player1.level = createLevel(note.playerLevel)
-                    } else {
-                        sharedViewModel.player2.name = note.playername
-                        sharedViewModel.player2.level = createLevel(note.playerLevel)
-                    }
-
-                    navController.navigate(Screen.GameSettingScreen.route)
-
-                }
-            ) {
-                Column(
-                    modifier = Modifier
-                        .background(background)
-                        .fillMaxHeight()
-                        .fillMaxWidth()
-                ) {
-
-                    Row() {
-                        Text(note.roomId.toString(),
-                            fontWeight = FontWeight.Bold,
-                            maxLines = 1,
-                            overflow = TextOverflow.Ellipsis)
-
-                    }
-                    Row() {
-                        Text(note.playername,
-                            fontWeight = FontWeight.Bold,
-                        maxLines = 1,
-                        overflow = TextOverflow.Ellipsis)
-
-                    }
-                    Row() {
-                        Text(
-                            note.playerLevel,
-                            maxLines = 1,
-                            fontWeight = FontWeight.Bold,
-                            overflow = TextOverflow.Ellipsis,
-
-                        )
-
-                    }
-                    Row() {
-
-
-
-
-                    }
-                    Row(
-                        modifier = Modifier
-                            .height(55.dp)
-                            .fillMaxSize()
-                    ) {
-
-                            Image(
-
-                               // painterResource(id = note.playerBildLocation),
-                                painterResource(id = R.drawable.icon_settings),
-                                contentDescription = null,
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .fillMaxSize(),
-                            )
-
-
-                    }
-
-                }
-
-            }
-        }
-    }
-    when (popupState.value) {
-        org.kabiri.android.noteroom.PopupState.Open -> {
-            NotePopup2(
-                onClickDismiss = {
-                    popupState.value = org.kabiri.android.noteroom.PopupState.Close
-                    pl.value?.let { playerViewModel.deletePlayer(it) }
-
-                },
-                onClickSave = {
-                    if (isFirst) {
-                        /*sharedViewModel.player1.name = pl.value!!.playername
-                        sharedViewModel.player1.level = createLevel(pl.value!!.playername)
-                        sharedViewModel.player1.picture = pl.value!!.playerBildLocation*/
-                        //sharedViewModel.player1.name = "thomas"
-                      //  sharedViewModel.player1.level = createLevel("Pro")
-                      //  sharedViewModel.player1.picture = R.drawable.icon_settings
-                      //  goaway(navController)
-
-                    } else{
-                        sharedViewModel.player2.name = pl.value!!.playername
-                        sharedViewModel.player2.level = createLevel(pl.value!!.playername)
-                       // sharedViewModel.player2.picture = pl.value!!.
-                    }
-                    popupState.value = org.kabiri.android.noteroom.PopupState.Close
-                 //  navController.navigate(Screen.GameSettingScreen.route)
-
-
-                }
-            )
-        }
-        org.kabiri.android.noteroom.PopupState.Edit -> {
-            NotePopup2(
-                txtState = txtState,
-                onClickDismiss = {
-         //           popupState.value = org.kabiri.android.noteroom.PopupState.Close
-                    popupState.value = org.kabiri.android.noteroom.PopupState.Close
-                },
-                onClickSave = {
-     //               playerViewModel.deletePlayer(player = PlayerEntity(noteIdState.value,"","",2))
-                 /*   homeViewModel.updateNote(
-                        note = NoteEntity(
-                            roomId = noteIdState.value,
-                            text = it
-                        )
-                    )
-                    */
-
-                    popupState.value = org.kabiri.android.noteroom.PopupState.Close
-                }
-            )
-        }
-        org.kabiri.android.noteroom.PopupState.Close -> {
-        }
-    }
-
-}
 
 
 fun String.makeimportant(): String {
@@ -450,63 +294,3 @@ fun String.makeimportant(): String {
 }
 
 
-/**
- *
- * Copyright © 2022 Ali Kabiri
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of this software
- * and associated documentation files (the “Software”), to deal in the Software without restriction,
- * including without limitation the rights to use, copy, modify, merge, publish, distribute,
- * sublicense, and/or sell copies of the Software, and to permit persons to whom the Software
- * is furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in all copies or
- * substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
- * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
- * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE
- * FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
- * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
- */
-
-private enum class PopupState {
-    Open, Close, Edit
-}
-
-@Composable
-fun NotePopup2(
-    txtState: MutableState<String> = rememberSaveable { mutableStateOf("")},
-    onClickSave: (String) -> Unit,
-    onClickDismiss: () -> Unit,
-) {
-    Dialog(onDismissRequest = onClickDismiss) {
-        Column(
-            modifier = Modifier
-                .clip(RoundedCornerShape(8.dp))
-                .background(color = MaterialTheme.colorScheme.background)
-        ) {
-            BasicTextField(
-                modifier = Modifier
-                    .padding(start = 16.dp, end = 16.dp, top = 24.dp),
-                value = txtState.value,
-                onValueChange = { txt: String ->
-                    txtState.value = txt
-                },
-            )
-
-            Row(
-                modifier = Modifier.padding(start = 16.dp, end = 16.dp, bottom = 16.dp, top = 16.dp)
-            ) {
-                androidx.compose.material3.Button(onClick = onClickDismiss) {
-                    androidx.compose.material3.Text(text = stringResource(id = R.string.screen_home_popup_button_dismiss))
-                }
-                Spacer(modifier = Modifier.width(8.dp))
-                androidx.compose.material3.Button(onClick = { onClickSave(txtState.value) }) {
-                    androidx.compose.material3.Text(text = stringResource(id = R.string.screen_home_popup_button_save))
-                }
-            }
-        }
-    }
-}
