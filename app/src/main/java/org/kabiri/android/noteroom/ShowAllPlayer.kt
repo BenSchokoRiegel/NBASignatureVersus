@@ -223,6 +223,7 @@ fun Rasterlayout1(navController: NavController,
                             .height(55.dp)
                             .fillMaxSize()
                     ) {
+                        /*
                       //  var x: Int = note.playerBildLocation
                     //    var a: Int = R.drawable.profil_ben
                   //      var b = R.drawable.profil_ben.toString()
@@ -250,7 +251,7 @@ fun Rasterlayout1(navController: NavController,
 
                         )
 
-
+    */
                     }
                     Row(
                         modifier = Modifier

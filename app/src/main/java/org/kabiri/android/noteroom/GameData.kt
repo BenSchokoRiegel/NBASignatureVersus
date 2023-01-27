@@ -1,5 +1,6 @@
 package org.kabiri.android.noteroom
 
+import androidx.compose.material.ListItem
 import kotlin.random.Random
 
 enum class Level {
@@ -56,5 +57,35 @@ class Player(var name: String, var level: Level, var picture: Int) {
 class GameScore(var player1_score:Int, var player2_score:Int, var player1_turn: Boolean, var maxScore:Int, var hasStarted:Boolean){
 
     constructor():this(0,0, Random.nextBoolean(),11,hasStarted = false)
+}
+
+
+val all_pr : List<Int> = listOf<Int>(
+    R.drawable.a,
+    R.drawable.b,
+    R.drawable.c,
+    R.drawable.d,
+    R.drawable.e,
+    R.drawable.f,
+    R.drawable.g,
+    R.drawable.h,
+    R.drawable.i,
+    R.drawable.j,
+    R.drawable.k,
+    R.drawable.l,
+    R.drawable.m,
+    R.drawable.n,
+    R.drawable.o,
+    R.drawable.p,
+    R.drawable.a,
+    R.drawable.q,
+    R.drawable.r,
+    R.drawable.t,
+)
+
+fun getOneIcon():Int{
+    var x : Int = all_pr.get((0..all_pr.size-1).random())
+    return x
+
 }
 

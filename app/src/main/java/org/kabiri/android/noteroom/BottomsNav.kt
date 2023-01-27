@@ -45,6 +45,7 @@ fun BottomNavigation(
     items: List<IconsForGame>,
     sharedViewModel: SharedViewModel
 ) {
+
     androidx.compose.material.BottomNavigation(
         backgroundColor = topAndBottomColor,
         contentColor = Color.Black,
@@ -53,7 +54,9 @@ fun BottomNavigation(
             .fillMaxHeight(0.2f)
             .padding(10.dp)
     ) {
+
         items.forEach { item ->
+
             BottomNavigationItem(
                 icon = {
                     Icon(
@@ -82,7 +85,7 @@ fun BottomNavigation(
                     } else if (item.function == "Save") {
                         // #TODO
                     } else if (item.function == "Home") {
-                        //#TODO
+                        navController.navigate(Screen.StartScreen.route)
                     }else if (item.function == "Settings") {
                         navController.navigate(Screen.GameSettingScreen.route)
                     }

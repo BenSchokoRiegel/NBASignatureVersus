@@ -13,7 +13,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.navigation
 import androidx.navigation.compose.rememberNavController
 import org.kabiri.android.noteroom.viewmodel.PlayerViewModel
 
@@ -23,7 +22,7 @@ fun Navigation(playerViewModel : PlayerViewModel) {
 
     val navController = rememberNavController()
     val sharedViewModel: SharedViewModel = viewModel()
-    exampleGame(sharedViewModel)
+ //   exampleGame(sharedViewModel)
 
     NavHost(navController = navController, startDestination = Screen.StartScreen.route) {
   //  NavHost(navController = navController, startDestination = Screen.Winner.route) {
@@ -91,9 +90,9 @@ fun Navigation(playerViewModel : PlayerViewModel) {
 
 // an Example app to test the Composable for profil and Scrore
 fun exampleGame(sharedViewModel: SharedViewModel){
-    sharedViewModel.updatePlayer1(Player("Ben Riegel", Level.Pro,R.drawable.profil_ben))
+  //  sharedViewModel.updatePlayer1(Player("Ben Riegel", Level.Pro,R.drawable.q))
   //  sharedViewModel.updatePlayer1(Player("Harold Hide The Pain",Level.Rookie,R.drawable.profil_harold))
-    sharedViewModel.updatePlayer2(Player("Marina",Level.Rookie,R.drawable.profil_marina))
+ //   sharedViewModel.updatePlayer2(Player("Marina",Level.Rookie,R.drawable.profil_marina))
   //  sharedViewModel.updatePlayer2(Player("Matt", Level.Athlete,R.drawable.profil_matt))
   //  sharedViewModel.updatePlayer1(Player("Harold Hide The Pain",Level.Rookie,R.drawable.profil_harold))
   //  sharedViewModel.updatePlayer2(Player("Marina ",Level.Rookie,R.drawable.profil_marina))

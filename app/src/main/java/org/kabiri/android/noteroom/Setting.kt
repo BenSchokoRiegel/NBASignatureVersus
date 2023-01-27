@@ -74,7 +74,7 @@ fun Settings(
                             IconsForGame(R.drawable.icon_home, "Home"),
                             IconsForGame(R.drawable.icon_start, "New"),
                             //IconsForGame(R.drawable.icon_reset, "Reset"),
-                            IconsForGame(R.drawable.icon_save, "Save"),
+                          //  IconsForGame(R.drawable.icon_save, "Save"),
 
                             ), sharedViewModel
                     )
@@ -87,7 +87,7 @@ fun Settings(
                             IconsForGame(R.drawable.icon_continue, "Continue"),
                             IconsForGame(R.drawable.icon_new, "New"),
                             // IconsForGame(R.drawable.icon_reset, "Reset"),
-                            IconsForGame(R.drawable.icon_save, "Save"),
+                          //  IconsForGame(R.drawable.icon_save, "Save"),
                         ), sharedViewModel
                     )
                 }
@@ -143,6 +143,9 @@ fun PlayerSettings(sharedViewModel: SharedViewModel,  player_view_Model: PlayerV
 
     }
 }
+
+
+
 @Composable
 fun save_ordner(){
     Icon(
@@ -195,7 +198,9 @@ fun Player(player: Player, player_view_Model: PlayerViewModel,isFirst:Boolean,na
                 //.padding(10.dp, 2.dp
                 //.fillMaxWidth()
                 .size(75.dp)
-                .clickable { },
+                .clickable {
+                           player.picture = getOneIcon()
+                },
 
             painter = painterResource(id = player.picture),
             contentDescription = "Click to Change",
