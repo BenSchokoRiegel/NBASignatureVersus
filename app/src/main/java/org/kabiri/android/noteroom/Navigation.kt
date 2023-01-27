@@ -68,6 +68,12 @@ fun Navigation(playerViewModel : PlayerViewModel) {
             val intent = remember { Intent(Intent.ACTION_VIEW, Uri.parse("https://twitter.com/DrSchokoriegel")) }
             context.startActivity(intent)
         }
+        composable(route = Screen.Video.route){
+            val context = LocalContext.current
+            val intent = remember { Intent(Intent.ACTION_VIEW, Uri.parse("https://youtu.be/ivaNKgt_EUg")) }
+            context.startActivity(intent)
+        }
+
 
         composable(route = Screen.Github.route){
             val context = LocalContext.current

@@ -20,6 +20,8 @@ sealed class Screen(val route: String){
 
     object Camera : Screen("Camera")
 
+    object Video : Screen("Video")
+
 
 
 }

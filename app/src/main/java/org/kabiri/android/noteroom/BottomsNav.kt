@@ -82,8 +82,8 @@ fun BottomNavigation(
                         sharedViewModel.newGame()
                         navController.navigate(Screen.GameScreen.route)
 
-                    } else if (item.function == "Save") {
-                        // #TODO
+                    } else if (item.function == "help") {
+                        navController.navigate(Screen.Video.route)
                     } else if (item.function == "Home") {
                         navController.navigate(Screen.StartScreen.route)
                     }else if (item.function == "Settings") {
