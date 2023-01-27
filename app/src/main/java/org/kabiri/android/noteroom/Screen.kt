@@ -18,6 +18,7 @@ sealed class Screen(val route: String){
     object ShowAllPlayer : Screen("ShowAllPlayer")
     object ShowAllPlayer2 : Screen("ShowAllPlayer2")
 
+    object Camera : Screen("Camera")
 
 
 

@@ -1,5 +1,7 @@
 package org.kabiri.android.noteroom.camera_save
 
+// QUelle https://github.com/Kilo-Loco/content/blob/main/android/camera-jetpack-compose/app/src/main/java/com/example/camerajetpackcomposevideo
+
 import android.content.Context
 import android.net.Uri
 import android.util.Log
@@ -7,10 +9,8 @@ import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageCapture
 import androidx.camera.core.ImageCaptureException
 import androidx.camera.core.Preview
-
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.camera.view.PreviewView
-
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -20,9 +20,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.icons.Icons
-
 import androidx.compose.material.icons.sharp.Lens
-
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember

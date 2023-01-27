@@ -24,8 +24,15 @@ fun Navigation(playerViewModel : PlayerViewModel) {
     val sharedViewModel: SharedViewModel = viewModel()
     exampleGame(sharedViewModel)
 
-   // NavHost(navController = navController, startDestination = Screen.GameSettingScreen.route) {
-    NavHost(navController = navController, startDestination = Screen.Winner.route) {
+    NavHost(navController = navController, startDestination = Screen.StartScreen.route) {
+  //  NavHost(navController = navController, startDestination = Screen.Winner.route) {
+
+        composable(route = Screen.StartScreen.route) {
+            Screen()
+            S_Screen(navController,sharedViewModel)
+
+        }
+
 
         composable(route = Screen.ShowAllPlayer.route) {
             Screen()
@@ -83,9 +90,9 @@ fun Navigation(playerViewModel : PlayerViewModel) {
 
 // an Example app to test the Composable for profil and Scrore
 fun exampleGame(sharedViewModel: SharedViewModel){
-    //sharedViewModel.updatePlayer1(Player("Ben Jasper Riegel", Level.Pro,R.drawable.profil_ben))
+    sharedViewModel.updatePlayer1(Player("Ben Jasper Riegel", Level.Pro,R.drawable.profil_ben))
   //  sharedViewModel.updatePlayer1(Player("Harold Hide The Pain",Level.Rookie,R.drawable.profil_harold))
-    //sharedViewModel.updatePlayer2(Player("Marina",Level.Rookie,R.drawable.profil_marina))
+    sharedViewModel.updatePlayer2(Player("Marina",Level.Rookie,R.drawable.profil_marina))
   //  sharedViewModel.updatePlayer2(Player("Matt", Level.Athlete,R.drawable.profil_matt))
   //  sharedViewModel.updatePlayer1(Player("Harold Hide The Pain",Level.Rookie,R.drawable.profil_harold))
   //  sharedViewModel.updatePlayer2(Player("Marina ",Level.Rookie,R.drawable.profil_marina))

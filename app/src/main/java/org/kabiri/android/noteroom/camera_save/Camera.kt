@@ -1,5 +1,6 @@
 package org.kabiri.android.noteroom.camera_save
 
+// https://github.com/Kilo-Loco/content/blob/main/android/camera-jetpack-compose/app/src/main/java/com/example/camerajetpackcomposevideo/MainActivity.kt
 
 import android.Manifest
 import android.content.pm.PackageManager
@@ -29,7 +30,7 @@ import java.io.File
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
-class MainActivity : ComponentActivity() {
+class Camera : ComponentActivity() {
 
     private lateinit var outputDirectory: File
     private lateinit var cameraExecutor: ExecutorService

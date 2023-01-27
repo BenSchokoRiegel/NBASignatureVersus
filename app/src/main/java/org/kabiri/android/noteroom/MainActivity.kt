@@ -27,15 +27,18 @@ import org.kabiri.android.noteroom.viewmodel.PlayerViewModel
 
 
 import android.content.Context
+import android.net.Uri
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateOf
+
+import org.kabiri.android.noteroom.camera_save.CameraView
 //import androidx.camera.core.ImageCapture
 //import androidx.camera.core.ImageCaptureConfig
 //import androidx.compose.Composable
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
-
-
-
+import java.util.concurrent.ExecutorService
 
 
 /*
@@ -72,11 +75,22 @@ class MainActivity : ComponentActivity() {
 class MainActivity : ComponentActivity() {
 
 val playerViewModel: PlayerViewModel by viewModels()
+   // val x : CameraStart by
+
+    private lateinit var outputDirectory: File
+    private lateinit var cameraExecutor: ExecutorService
+
+    private var shouldShowCamera: MutableState<Boolean> = mutableStateOf(false)
+
+    private lateinit var photoUri: Uri
+    private var shouldShowPhoto: MutableState<Boolean> = mutableStateOf(false)
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
+          // org.kabiri.android.noteroom.camera_save.MainActivity()
+
             Navigation(playerViewModel = playerViewModel)
 
         }
