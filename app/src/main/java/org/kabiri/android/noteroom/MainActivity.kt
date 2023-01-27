@@ -9,12 +9,15 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import dagger.hilt.android.AndroidEntryPoint
 import org.kabiri.android.noteroom.ui.home.HomeScreen
+import org.kabiri.android.noteroom.ui.home.testDataBase
 import org.kabiri.android.noteroom.ui.theme.NoteRoomTheme
 import org.kabiri.android.noteroom.viewmodel.HomeViewModel
+import org.kabiri.android.noteroom.viewmodel.PlayerViewModel
 
 /*
 @AndroidEntryPoint
@@ -22,6 +25,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        val playerViewModel: PlayerViewModel by viewModels()
         val homeViewModel: HomeViewModel by viewModels()
 
         setContent {
@@ -38,17 +42,27 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
-} */
+}
+*/
 
+
+
+
+/*
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+
+val playerViewModel: PlayerViewModel by viewModels()
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            Navigation()
+            Navigation(playerViewModel = playerViewModel)
         }
     }
 }
-
+*/
 
 @Composable
 fun Greeting(name: String) {

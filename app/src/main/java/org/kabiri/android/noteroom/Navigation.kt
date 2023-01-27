@@ -13,10 +13,12 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import org.kabiri.android.noteroom.viewmodel.PlayerViewModel
 
 
 @Composable
-fun Navigation() {
+fun Navigation(playerViewModel : PlayerViewModel) {
+
     val navController = rememberNavController()
     val sharedViewModel: SharedViewModel = viewModel()
     exampleGame(sharedViewModel)
@@ -29,7 +31,7 @@ fun Navigation() {
         }
         composable(route = Screen.GameSettingScreen.route){
             Screen()
-            Settings(navController = navController, sharedViewModel = sharedViewModel)
+            Settings(navController = navController, sharedViewModel = sharedViewModel,playerViewModel)
         }
 
         composable(route = Screen.GameOver.route){

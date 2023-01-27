@@ -13,8 +13,6 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -23,7 +21,6 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.drawWithContent
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
@@ -37,8 +34,11 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.unit.toSize
 
 import androidx.navigation.NavController
+import org.kabiri.android.noteroom.model.NoteEntity
+import org.kabiri.android.noteroom.model.PlayerEntity
 
 import org.kabiri.android.noteroom.ui.theme.NoteRoomTheme
+import org.kabiri.android.noteroom.viewmodel.PlayerViewModel
 
 
 val topAndBottomColor: Color = "#db711e".color
@@ -51,8 +51,13 @@ val playerPadding = 10.dp
 
 
 @Composable
-fun Settings(navController: NavController, sharedViewModel: SharedViewModel) {
+fun Settings(
+    navController: NavController,
+    sharedViewModel: SharedViewModel,
+    playerViewModel: PlayerViewModel
+) {
 
+    val noteListState = playerViewModel.noteListFlow.collectAsState(initial = listOf())
     val context = LocalContext.current
     //val playerViewModel: PlayerViewModel = viewModel(factory = PlayerViewModelFactory(context.applicationContext as Application) )
 
@@ -100,7 +105,7 @@ fun Settings(navController: NavController, sharedViewModel: SharedViewModel) {
                     .border(4.dp, Color.Black)
             ) {
                 GameSettings(sharedViewModel)
-                PlayerSettings(sharedViewModel /*,playerViewModel */)
+                PlayerSettings(sharedViewModel ,playerViewModel )
             }
 
         }
@@ -114,7 +119,7 @@ fun Settings(navController: NavController, sharedViewModel: SharedViewModel) {
 
 
 @Composable
-fun PlayerSettings(sharedViewModel: SharedViewModel, /* player_view_Model: PlayerViewModel */) {
+fun PlayerSettings(sharedViewModel: SharedViewModel,  player_view_Model: PlayerViewModel ) {
     Row (
         Modifier
             .border(2.dp, Color.Black)
@@ -126,14 +131,14 @@ fun PlayerSettings(sharedViewModel: SharedViewModel, /* player_view_Model: Playe
                 .fillMaxWidth(0.5f)
                 .border(2.dp, Color.Black)) {
             HeaderSetting(headText = "Player 1")
-            Player(sharedViewModel.player1 /*,player_view_Model */)
+            Player(sharedViewModel.player1 ,player_view_Model )
         }
         Column(
             Modifier
                 .fillMaxHeight()
                 .border(2.dp, Color.Black)) {
             HeaderSetting(headText = "Player 2")
-            Player(sharedViewModel.player2/*,player_view_Model */)
+            Player(sharedViewModel.player2,player_view_Model )
         }
 
     }
@@ -158,7 +163,7 @@ fun save_ordner(){
 
 // TODO ENTER -> Stop typing
 @Composable
-fun Player(player: Player, /* player_view_Model: PlayerViewModel*/){
+fun Player(player: Player, player_view_Model: PlayerViewModel){
     Text( "--------------------------------------------------", maxLines = 1)
 
     var name  by remember { mutableStateOf(TextFieldValue(player.name))}
@@ -211,10 +216,12 @@ fun Player(player: Player, /* player_view_Model: PlayerViewModel*/){
                 .height(75.dp)
                 .padding(10.dp)
                 .clickable {
+                    player_view_Model.addPlayer(player = PlayerEntity( playername = player.name, playerLevel = player.level.toString(), playerBildLocation = player.picture))
                     // player_view_Model.addPlayer(PlayerInDB(player.name,player.level.name,player.picture))
                 },
             tint = Color.Black
         )
+
 
         Icon(
             painter = painterResource(id = R.drawable.icon_delete),
