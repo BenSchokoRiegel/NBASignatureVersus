@@ -1,5 +1,6 @@
 package org.kabiri.android.noteroom.model
 
+import android.graphics.Bitmap
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import org.kabiri.android.noteroom.Player
@@ -29,4 +30,7 @@ import org.kabiri.android.noteroom.Player
 @Entity(tableName = "player")
 data class PlayerEntity(
     @PrimaryKey(autoGenerate = true) var roomId: Long? = null,
-    var playername: String, var playerLevel : String,var playerBildLocation: Int)
+    var playername: String, var playerLevel : String,
+    var playerBildLocation: String)
+   // var playerBitmap: Bitmap)
+  //  var image : ArrayList<String>)

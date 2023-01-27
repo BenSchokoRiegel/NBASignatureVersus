@@ -48,7 +48,7 @@ class MainActivity : ComponentActivity() {
 
 
 
-/*
+
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
@@ -58,11 +58,22 @@ val playerViewModel: PlayerViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            Navigation(playerViewModel = playerViewModel)
+         //   Navigation(playerViewModel = playerViewModel)
+
         }
     }
 }
-*/
+
+@Composable
+fun takeAndSavePhoto() {
+    val imageCapture = ImageCapture(imageCaptureConfig)
+    val image = imageCapture.takePicture()
+
+    // Save the image to the "drawable" folder
+    val file = File(context.getDrawable(R.drawable.your_file_name).toString())
+    image.save(file, ImageFormat.JPEG)
+}
+
 
 @Composable
 fun Greeting(name: String) {

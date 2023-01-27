@@ -27,7 +27,7 @@ import org.kabiri.android.noteroom.model.NoteEntity
  * SOFTWARE.
  */
 
-@Database(entities = [NoteEntity::class], version = 1)
+@Database(entities = [NoteEntity::class], version = 3)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun noteDao(): NoteDao

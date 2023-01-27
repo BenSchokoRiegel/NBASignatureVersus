@@ -1,5 +1,8 @@
 package org.kabiri.android.noteroom
 
+import android.content.Context
+import android.graphics.Bitmap
+import android.graphics.Canvas
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
@@ -21,6 +24,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.core.content.ContextCompat
 import androidx.navigation.NavController
 
 
@@ -28,7 +32,9 @@ class IconsForGame(val location: Int, val function: String) {}
 
 
 
-
+fun goaway(navController: NavController,){
+    navController.navigate(Screen.GameSettingScreen.route)
+}
 
 
 
@@ -87,6 +93,33 @@ fun BottomNavigation(
     }
 
 
+}
+// on below line we are creating a function to get bitmap
+// from image and passing params as context and an int for drawable.
+ fun getBitmapFromImage(context: Context, drawable: Int): Bitmap {
+
+    // on below line we are getting drawable
+    val db = ContextCompat.getDrawable(context, drawable)
+
+    // in below line we are creating our bitmap and initializing it.
+    val bit = Bitmap.createBitmap(
+        db!!.intrinsicWidth, db.intrinsicHeight, Bitmap.Config.ARGB_8888
+    )
+
+    // on below line we are
+    // creating a variable for canvas.
+    val canvas = Canvas(bit)
+
+    // on below line we are setting bounds for our bitmap.
+    db.setBounds(0, 0, canvas.width, canvas.height)
+
+    // on below line we are simply
+    // calling draw to draw our canvas.
+    db.draw(canvas)
+
+    // on below line we are
+    // returning our bitmap.
+    return bit
 }
 
 

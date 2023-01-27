@@ -23,7 +23,19 @@ fun Navigation(playerViewModel : PlayerViewModel) {
     val sharedViewModel: SharedViewModel = viewModel()
     exampleGame(sharedViewModel)
 
-    NavHost(navController = navController, startDestination = Screen.GameOver.route) {
+    NavHost(navController = navController, startDestination = Screen.GameSettingScreen.route) {
+
+        composable(route = Screen.ShowAllPlayer.route) {
+            Screen()
+            ShowAllPlayers(navController,sharedViewModel,playerViewModel, isFirst = true)
+
+        }
+        composable(route = Screen.ShowAllPlayer2.route) {
+            Screen()
+            ShowAllPlayers(navController,sharedViewModel,playerViewModel, isFirst = false)
+
+        }
+
         composable(route = Screen.GameScreen.route) {
             Screen()
             GameScreenTopBar(navController,sharedViewModel )
@@ -67,10 +79,12 @@ fun Navigation(playerViewModel : PlayerViewModel) {
 
 // an Example app to test the Composable for profil and Scrore
 fun exampleGame(sharedViewModel: SharedViewModel){
-    sharedViewModel.updatePlayer1(Player("Ben Jasper Riegel", Level.Pro,R.drawable.profil_ben))
-    //sharedViewModel.updatePlayer1(Player("Harold Hide The Pain",Level.Rookie,R.drawable.profil_harold))
-    //sharedViewModel.updatePlayer2(Player("Marina Doronina",Level.Rookie,R.drawable.profil_marina))
-    sharedViewModel.updatePlayer2(Player("Matt", Level.Athlete,R.drawable.profil_matt))
+    //sharedViewModel.updatePlayer1(Player("Ben Jasper Riegel", Level.Pro,R.drawable.profil_ben))
+  //  sharedViewModel.updatePlayer1(Player("Harold Hide The Pain",Level.Rookie,R.drawable.profil_harold))
+  //  sharedViewModel.updatePlayer2(Player("Marina Doronina",Level.Rookie,R.drawable.profil_marina))
+    //sharedViewModel.updatePlayer2(Player("Matt", Level.Athlete,R.drawable.profil_matt))
+    sharedViewModel.updatePlayer1(Player("Harold Hide The Pain",Level.Rookie,R.drawable.profil_harold))
+    sharedViewModel.updatePlayer2(Player("Marina Doronina",Level.Rookie,R.drawable.profil_marina))
 }
 
 

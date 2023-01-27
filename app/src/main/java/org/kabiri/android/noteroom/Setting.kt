@@ -105,7 +105,7 @@ fun Settings(
                     .border(4.dp, Color.Black)
             ) {
                 GameSettings(sharedViewModel)
-                PlayerSettings(sharedViewModel ,playerViewModel )
+                PlayerSettings(sharedViewModel ,playerViewModel,navController )
             }
 
         }
@@ -119,7 +119,7 @@ fun Settings(
 
 
 @Composable
-fun PlayerSettings(sharedViewModel: SharedViewModel,  player_view_Model: PlayerViewModel ) {
+fun PlayerSettings(sharedViewModel: SharedViewModel,  player_view_Model: PlayerViewModel , navController: NavController) {
     Row (
         Modifier
             .border(2.dp, Color.Black)
@@ -131,14 +131,14 @@ fun PlayerSettings(sharedViewModel: SharedViewModel,  player_view_Model: PlayerV
                 .fillMaxWidth(0.5f)
                 .border(2.dp, Color.Black)) {
             HeaderSetting(headText = "Player 1")
-            Player(sharedViewModel.player1 ,player_view_Model )
+            Player(sharedViewModel.player1 ,player_view_Model , true,navController)
         }
         Column(
             Modifier
                 .fillMaxHeight()
                 .border(2.dp, Color.Black)) {
             HeaderSetting(headText = "Player 2")
-            Player(sharedViewModel.player2,player_view_Model )
+            Player(sharedViewModel.player2,player_view_Model,false,navController )
         }
 
     }
@@ -163,9 +163,9 @@ fun save_ordner(){
 
 // TODO ENTER -> Stop typing
 @Composable
-fun Player(player: Player, player_view_Model: PlayerViewModel){
+fun Player(player: Player, player_view_Model: PlayerViewModel,isFirst:Boolean,navController: NavController){
     Text( "--------------------------------------------------", maxLines = 1)
-
+    var x = LocalContext.current
     var name  by remember { mutableStateOf(TextFieldValue(player.name))}
 
     Row(Modifier.padding(20.dp,2.dp)){
@@ -216,7 +216,8 @@ fun Player(player: Player, player_view_Model: PlayerViewModel){
                 .height(75.dp)
                 .padding(10.dp)
                 .clickable {
-                    player_view_Model.addPlayer(player = PlayerEntity( playername = player.name, playerLevel = player.level.toString(), playerBildLocation = player.picture))
+                  //  player_view_Model.addPlayer(player = PlayerEntity( playername = player.name, playerLevel = player.level.toString(), playerBitmap = getBitmapFromImage(x,player.picture)))
+                    player_view_Model.addPlayer(player = PlayerEntity( playername = player.name, playerLevel = player.level.toString(), playerBildLocation = player.picture.toString()))
                     // player_view_Model.addPlayer(PlayerInDB(player.name,player.level.name,player.picture))
                 },
             tint = Color.Black
@@ -224,7 +225,7 @@ fun Player(player: Player, player_view_Model: PlayerViewModel){
 
 
         Icon(
-            painter = painterResource(id = R.drawable.icon_delete),
+            painter = painterResource(id = R.drawable.icon_pr),
             contentDescription = null,
             modifier = Modifier
                 .alpha(1f)
@@ -232,7 +233,11 @@ fun Player(player: Player, player_view_Model: PlayerViewModel){
                 .height(75.dp)
                 .padding(10.dp)
                 .clickable {
-                    // navController.navigate(Screen.Twitter.route)
+                    if (isFirst){
+                        navController.navigate(Screen.ShowAllPlayer.route)
+                    } else {
+                        navController.navigate(Screen.ShowAllPlayer2.route)
+                    }
                 },
             tint = Color.Black
         )

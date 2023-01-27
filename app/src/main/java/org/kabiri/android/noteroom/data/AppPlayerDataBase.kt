@@ -29,7 +29,7 @@ import org.kabiri.android.noteroom.model.PlayerEntity
  * SOFTWARE.
  */
 
-@Database(entities = [PlayerEntity::class], version = 1)
+@Database(entities = [PlayerEntity::class], version = 3)
 abstract class AppPlayerDataBase : RoomDatabase() {
 
     abstract fun playerDao(): PlayerDao
