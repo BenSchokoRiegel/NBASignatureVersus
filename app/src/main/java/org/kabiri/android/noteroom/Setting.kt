@@ -200,6 +200,7 @@ fun Player(player: Player, player_view_Model: PlayerViewModel,isFirst:Boolean,na
                 .size(75.dp)
                 .clickable {
                            player.picture = getOneIcon()
+                    navController.navigate(Screen.GameSettingScreen.route)
                 },
 
             painter = painterResource(id = player.picture),
