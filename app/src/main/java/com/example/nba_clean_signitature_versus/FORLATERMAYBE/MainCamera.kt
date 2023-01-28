@@ -1,4 +1,4 @@
-package com.example.nba_clean_signitature_versus.camera_save
+package com.example.nba_clean_signitature_versus.FORLATERMAYBE
 
 
 import android.Manifest
