@@ -42,7 +42,7 @@ fun ShowAllPlayers(navController: NavController,
     MaterialTheme() {
         // A surface container using the 'background' color from the theme
         androidx.compose.material.Scaffold(
-            topBar = { Topbar(topAndBottomColor, " Choose Player", navController = navController) },
+            topBar = { Topbar(topAndBottomColor, "Choose Player", navController = navController) },
             bottomBar = {
                 if (!sharedViewModel.gameScore.hasStarted) {
                     com.example.nba_clean_signitature_versus.BottomNavigation(
@@ -180,12 +180,12 @@ fun Rasterlayout1(navController: NavController,
                             .height(55.dp)
                             .fillMaxSize()
                     ) {
-                        /*
+
                       //  var x: Int = note.playerBildLocation
                     //    var a: Int = R.drawable.profil_ben
                   //      var b = R.drawable.profil_ben.toString()
-                       var i = Drawable.createFromPath("R.drawable.profil_ben")
-                        var xd = Drawable.createFromPath("R.drawable.Doronina")
+                      // var i = Drawable.createFromPath("R.drawable.profil_ben")
+                        //var xd = Drawable.createFromPath("R.drawable.Doronina")
                      //   var xs = Drawable.createFromPath("R.drawable.profil_ben")
                       //  var x = R.drawable.icon_save.toString()
 
@@ -208,7 +208,7 @@ fun Rasterlayout1(navController: NavController,
 
                         )
 
-    */
+
                     }
                     Row(
                         modifier = Modifier
