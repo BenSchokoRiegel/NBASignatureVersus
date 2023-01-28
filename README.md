@@ -1,4 +1,3 @@
-
 # NBASignatureVersus
 Sie spielen ein normales 1vs1 Pick-Up-Spiel , wobei immer die Person, die gerade angreift nur auf die Weise scoren darf, wie auf der App angezeigt wurde. Auf der App sieht man kurze Videos von NBA Signature Moves. Der Verteidiger weiß nicht, welcher Signature-Move der Angreifer benutzen muss
 
@@ -10,4 +9,4 @@ This Application is for educational purposes only!!!
 Alle Icons sind von https://www.flaticon.com/de/kostenlose-icons/online
 Die Animierten Basketball Gifs sind alle von WALKERTKL http://www.walkertkl.com/about
 
-Eine kleine Anleitung der App unter https://www.youtube.com/watch?v=ivaNKgt_EUg
+Eine kleine Anleitung meiner APP unter https://www.youtube.com/watch?v=ivaNKgt_EUg

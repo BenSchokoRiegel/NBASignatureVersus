@@ -12,5 +12,5 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "NBASIgnatureVersus"
+rootProject.name = "NBA_CLEAN_Signitature_Versus"
 include ':app'
