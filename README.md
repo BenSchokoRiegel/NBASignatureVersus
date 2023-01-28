@@ -8,3 +8,5 @@ This Application is for educational purposes only!!!
 
 Alle Icons sind von https://www.flaticon.com/de/kostenlose-icons/online
 Die Animierten Basketball Gifs sind alle von WALKERTKL http://www.walkertkl.com/about
+
+Eine kleine Anleitung meiner APP unter https://www.youtube.com/watch?v=ivaNKgt_EUg
