@@ -29,56 +29,17 @@ import java.io.File
 import java.util.concurrent.ExecutorService
 
 
-/*
-@AndroidEntryPoint
-class MainActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        val playerViewModel: PlayerViewModel by viewModels()
-        val homeViewModel: HomeViewModel by viewModels()
-
-        setContent {
-            NoteRoomTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    HomeScreen(
-                        homeViewModel = homeViewModel
-                    )
-                }
-            }
-        }
-    }
-}
-*/
-
-
-
-
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
 val playerViewModel: PlayerViewModel by viewModels()
-   // val x : CameraStart by
 
-    private lateinit var outputDirectory: File
-    private lateinit var cameraExecutor: ExecutorService
-
-    private var shouldShowCamera: MutableState<Boolean> = mutableStateOf(false)
-
-    private lateinit var photoUri: Uri
-    private var shouldShowPhoto: MutableState<Boolean> = mutableStateOf(false)
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-          // org.kabiri.android.noteroom.camera_save.MainActivity()
-
             Navigation(playerViewModel = playerViewModel)
 
         }
