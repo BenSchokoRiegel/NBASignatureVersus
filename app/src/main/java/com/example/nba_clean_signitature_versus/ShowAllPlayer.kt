@@ -45,31 +45,7 @@ fun ShowAllPlayers(navController: NavController,
         androidx.compose.material.Scaffold(
             topBar = { Topbar(topAndBottomColor, "Choose Player", navController = navController) },
             bottomBar = {
-                if (!sharedViewModel.gameScore.hasStarted) {
-                    com.example.nba_clean_signitature_versus.BottomNavigation(
-                        navController,
-                        items =
-                        listOf(
-                            IconsForGame(R.drawable.icon_settings, "Settings"),
-                            IconsForGame(R.drawable.icon_start, "New"),
-                            //IconsForGame(R.drawable.icon_reset, "Reset"),
-                            IconsForGame(R.drawable.icon_home, "Home"),
 
-                            ), sharedViewModel
-                    )
-                } else {
-                    com.example.nba_clean_signitature_versus.BottomNavigation(
-                        navController,
-                        items =
-                        listOf(
-                            IconsForGame(R.drawable.icon_home, "Home"),
-                            IconsForGame(R.drawable.icon_continue, "Continue"),
-                            IconsForGame(R.drawable.icon_new, "New"),
-                            // IconsForGame(R.drawable.icon_reset, "Reset"),
-                            IconsForGame(R.drawable.icon_save, "Save"),
-                        ), sharedViewModel
-                    )
-                }
 
 
             }
@@ -143,15 +119,7 @@ fun Rasterlayout1(navController: NavController,
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
 
-                    Row() {
-                        Text(
-                            note.roomId.toString(),
-                            fontWeight = FontWeight.Bold,
-                            maxLines = 1,
-                            overflow = TextOverflow.Ellipsis
-                        )
 
-                    }
                     Row() {
                         Text(
                             note.playername,
@@ -206,7 +174,7 @@ fun Rasterlayout1(navController: NavController,
                            // painterResource(i),
                             contentDescription = null,
                             modifier = Modifier
-                                .fillMaxWidth()
+                                .fillMaxWidth().padding(5.dp)
 
                         )
 
