@@ -58,7 +58,6 @@ class GameScore(var player1_score:Int, var player2_score:Int, var player1_turn: 
     constructor():this(0,0, Random.nextBoolean(),11,hasStarted = false)
 }
 
-
 val all_pr : List<Int> = listOf<Int>(
     R.drawable.a,
     R.drawable.b,
@@ -80,7 +79,23 @@ val all_pr : List<Int> = listOf<Int>(
     R.drawable.q,
     R.drawable.r,
     R.drawable.t,
-)
+    R.drawable.u,
+    R.drawable.v,
+    R.drawable.w,
+    R.drawable.x,
+    R.drawable.y,
+    R.drawable.z,
+    R.drawable.a1,
+    R.drawable.a2,
+    R.drawable.a3,
+    R.drawable.a4,
+    R.drawable.a5,
+    R.drawable.a6,
+    R.drawable.a7,
+    R.drawable.a8,
+
+
+    )
 
 fun getOneIcon():Int{
     var x : Int = all_pr.get((0..all_pr.size-1).random())

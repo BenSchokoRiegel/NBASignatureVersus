@@ -43,14 +43,14 @@ fun Navigation(playerViewModel : PlayerViewModel) {
 
         }
 
-        composable(route = Screen.ShowAllPlayer.route) {
+        composable(route = Screen.ChoosePlayer1.route) {
             Screen()
-            ShowAllPlayers(navController,sharedViewModel,playerViewModel, isFirst = true)
+            ChooseProfil(navController,sharedViewModel,playerViewModel, isFirst = true)
 
         }
-        composable(route = Screen.ShowAllPlayer2.route) {
+        composable(route = Screen.ChoosePlayer2.route) {
             Screen()
-            ShowAllPlayers(navController,sharedViewModel,playerViewModel, isFirst = false)
+            ChooseProfil(navController,sharedViewModel,playerViewModel, isFirst = false)
 
         }
 

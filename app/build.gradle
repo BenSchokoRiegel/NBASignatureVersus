@@ -56,6 +56,7 @@ dependencies {
 
     // hilt di
     implementation "com.google.dagger:hilt-android:$hilt_version"
+    implementation 'androidx.datastore:datastore-core:1.0.0'
     kapt "com.google.dagger:hilt-compiler:$hilt_version"
 
     // Room persistence library
