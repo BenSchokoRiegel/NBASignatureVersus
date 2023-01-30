@@ -1,6 +1,7 @@
 package com.example.nba_clean_signitature_versus
 
 
+import android.graphics.Bitmap
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -211,6 +212,7 @@ fun Player(player: Player, player_view_Model: PlayerViewModel, isFirst:Boolean, 
 
     }
     Row(modifier = Modifier.padding(10.dp)){
+        var x : Bitmap = getBitmapFromImage(LocalContext.current,R.drawable.g)
         Icon(
             painter = painterResource(id = R.drawable.icon_save),
             contentDescription = null,
@@ -221,7 +223,7 @@ fun Player(player: Player, player_view_Model: PlayerViewModel, isFirst:Boolean, 
                 .padding(10.dp)
                 .clickable {
                   //  player_view_Model.addPlayer(player = PlayerEntity( playername = player.name, playerLevel = player.level.toString(), playerBitmap = getBitmapFromImage(x,player.picture)))
-                    player_view_Model.addPlayer(player = PlayerEntity( playername = player.name, playerLevel = player.level.toString(), playerBildLocation = player.picture.toString()))
+                    player_view_Model.addPlayer(player = PlayerEntity( playername = player.name, playerLevel = player.level.toString(), playerBildLocation = player.picture.toString(), photo = x))
                     // player_view_Model.addPlayer(PlayerInDB(player.name,player.level.name,player.picture))
                 },
             tint = Color.Black

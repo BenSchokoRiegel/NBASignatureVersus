@@ -2,9 +2,7 @@ package com.example.nba_clean_signitature_versus.data
 
 
 import android.content.Context
-import androidx.room.Database
-import androidx.room.Room
-import androidx.room.RoomDatabase
+import androidx.room.*
 import com.example.nba_clean_signitature_versus.model.PlayerEntity
 
 /**
@@ -28,7 +26,8 @@ import com.example.nba_clean_signitature_versus.model.PlayerEntity
  * SOFTWARE.
  */
 
-@Database(entities = [PlayerEntity::class], version = 3)
+@Database(entities = [PlayerEntity::class], version = 4)
+@TypeConverters(Converters::class)
 abstract class AppPlayerDataBase : RoomDatabase() {
 
     abstract fun playerDao(): PlayerDao

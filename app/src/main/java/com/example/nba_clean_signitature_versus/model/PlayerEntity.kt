@@ -1,6 +1,8 @@
 package com.example.nba_clean_signitature_versus.model
 
+
 import android.graphics.Bitmap
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
@@ -31,6 +33,8 @@ import androidx.room.PrimaryKey
 data class PlayerEntity(
     @PrimaryKey(autoGenerate = true) var roomId: Long? = null,
     var playername: String, var playerLevel : String,
-    var playerBildLocation: String)
+    var playerBildLocation: String,
+    var photo: Bitmap
+    )
    // var playerBitmap: Bitmap)
   //  var image : ArrayList<String>)
