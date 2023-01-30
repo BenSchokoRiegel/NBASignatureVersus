@@ -20,6 +20,8 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.graphics.Color
+
+import com.example.nba_clean_signitature_versus.load_read_data.PickImageFromGallery
 import com.example.nba_clean_signitature_versus.viewmodel.PlayerViewModel
 
 //import androidx.camera.core.ImageCapture
@@ -46,8 +48,9 @@ val playerViewModel: PlayerViewModel by viewModels()
         super.onCreate(savedInstanceState)
         setContent {
           // org.kabiri.android.noteroom.camera_save.MainActivity()
-
-            Navigation(playerViewModel = playerViewModel)
+            PickImageFromGallery()
+            print("")
+            //Navigation(playerViewModel = playerViewModel)
 
         }
     }

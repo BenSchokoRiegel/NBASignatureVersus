@@ -36,6 +36,7 @@ import androidx.compose.ui.unit.toSize
 
 import androidx.navigation.NavController
 import com.example.nba_clean_signitature_versus.*
+
 import com.example.nba_clean_signitature_versus.model.PlayerEntity
 import com.example.nba_clean_signitature_versus.viewmodel.PlayerViewModel
 
@@ -198,7 +199,7 @@ fun Player(player: Player, player_view_Model: PlayerViewModel, isFirst:Boolean, 
                 //.fillMaxWidth()
                 .size(75.dp)
                 .clickable {
-                           player.picture = getOneIcon()
+                    player.picture = getOneIcon()
                     navController.navigate(Screen.GameSettingScreen.route)
                 },
 
