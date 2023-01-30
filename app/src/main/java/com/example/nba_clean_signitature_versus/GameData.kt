@@ -80,6 +80,22 @@ val all_pr : List<Int> = listOf<Int>(
     R.drawable.q,
     R.drawable.r,
     R.drawable.t,
+    R.drawable.u,
+    R.drawable.v,
+    R.drawable.w,
+    R.drawable.x,
+    R.drawable.y,
+    R.drawable.z,
+    R.drawable.a1,
+    R.drawable.a2,
+    R.drawable.a3,
+    R.drawable.a4,
+    R.drawable.a5,
+    R.drawable.a6,
+    R.drawable.a7,
+    R.drawable.a8,
+
+
 )
 
 fun getOneIcon():Int{

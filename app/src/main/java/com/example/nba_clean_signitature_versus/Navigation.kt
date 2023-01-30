@@ -32,6 +32,16 @@ fun Navigation(playerViewModel : PlayerViewModel) {
             S_Screen(navController,sharedViewModel)
 
         }
+        composable(route = Screen.ChoosePlayer1.route) {
+            Screen()
+            ChooseProfil(navController,sharedViewModel,playerViewModel, isFirst = true)
+
+        }
+        composable(route = Screen.ChoosePlayer2.route) {
+            Screen()
+            ChooseProfil(navController,sharedViewModel,playerViewModel, isFirst = false)
+
+        }
 
 
         composable(route = Screen.ShowAllPlayer.route) {

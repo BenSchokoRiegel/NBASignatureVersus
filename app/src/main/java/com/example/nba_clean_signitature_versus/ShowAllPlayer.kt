@@ -13,6 +13,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.GridCells
 import androidx.compose.foundation.lazy.LazyVerticalGrid
+import androidx.compose.foundation.shape.RoundedCornerShape
 
 
 import androidx.compose.material.*
@@ -130,7 +131,8 @@ fun Rasterlayout1(navController: NavController,
 
 
 
-                }
+                }, shape = RoundedCornerShape(15.dp),
+                elevation = 8.dp
             ) {
                 Column(
                     modifier = Modifier
