@@ -22,6 +22,8 @@ sealed class Screen(val route: String){
 
     object Video : Screen("Video")
 
+    object ChoosePlayer1 : Screen("ChoosePlayer1")
+    object ChoosePlayer2 : Screen("ChoosePlayer2")
 
 
 }

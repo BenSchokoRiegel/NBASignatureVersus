@@ -197,8 +197,11 @@ fun Player(player: Player, player_view_Model: PlayerViewModel, isFirst:Boolean, 
                 //.fillMaxWidth()
                 .size(75.dp)
                 .clickable {
-                           player.picture = getOneIcon()
-                    navController.navigate(Screen.GameSettingScreen.route)
+                    if (isFirst){
+                        navController.navigate(Screen.ChoosePlayer1.route)
+                    } else{
+                        navController.navigate(Screen.ChoosePlayer2.route)
+                    }
                 },
 
             painter = painterResource(id = player.picture),
