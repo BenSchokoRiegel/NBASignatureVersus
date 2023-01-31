@@ -8,11 +8,11 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import com.example.nba_clean_signitature_versus.*
 
 
 @Composable
@@ -50,14 +50,14 @@ fun S_Screen(navController: NavController, sharedViewModel: SharedViewModel) {
 fun show_start_icons(navController: NavController){
     Column(
         Modifier
-            .fillMaxWidth()
-            .padding(25.dp, 25.dp)
+            .fillMaxSize()
+            .padding(0.dp, 0.dp),  horizontalAlignment = Alignment.CenterHorizontally
 
     ){
         Row( Modifier
-            .fillMaxWidth()){
+            .fillMaxWidth().padding(bottom = 0.dp), horizontalArrangement = Arrangement.Center){
             Image(
-                painter = painterResource(id = R.drawable.start_screen_top),
+                painter = painterResource(id = R.drawable.start_screen_top_n),
                 contentDescription = null,
 
             )
@@ -65,7 +65,7 @@ fun show_start_icons(navController: NavController){
         Row(
             Modifier
                 .fillMaxWidth()
-                .padding(bottom = 25.dp)){
+                .padding(bottom = 80.dp), horizontalArrangement = Arrangement.Center){
             IconButton(onClick = { navController.navigate(Screen.GameSettingScreen.route) }) {
                 Image(
                     painter = painterResource(id = R.drawable.start_screen_bottom),
