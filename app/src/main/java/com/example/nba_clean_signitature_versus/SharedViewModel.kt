@@ -36,7 +36,8 @@ class SharedViewModel : ViewModel() {
         gameScore.player1_score = 0
         gameScore.player2_score = 0
         currentGif = getTheGifForPlayer()
-        gameScore.player1_turn = Random.nextBoolean()
+       gameScore.player1_turn = Random.nextBoolean()
+
     }
 
 
@@ -78,6 +79,32 @@ class SharedViewModel : ViewModel() {
         gameScore.player2_score = 0
         gameScore.hasStarted = false
     }
+
+    var flag: Boolean = true
+    var flag2: Boolean = false
+    fun getTheGifForPlayerVideo(): Gif {
+        if (flag2){
+            val possibleGif = gifs.filter {
+                isLevelExcepted(Level.Athlete, it.level) && currentGif != it
+            }
+
+            return possibleGif.get(Random.nextInt(0, possibleGif.size))
+        }
+
+        if (this.gameScore.player1_turn){
+            if (flag) {
+                flag = !flag
+                return getKawhi()
+
+            } else{
+                flag2 = true
+                return getSkyHook()
+            }
+        } else{
+            return getLuka()
+        }
+    }
+
 
 
     // getting an Gif which is under or equal to the level off the player

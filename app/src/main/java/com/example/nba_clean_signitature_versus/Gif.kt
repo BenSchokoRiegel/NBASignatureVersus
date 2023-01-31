@@ -4,6 +4,17 @@ package com.example.nba_clean_signitature_versus
 import android.graphics.Color.parseColor
 import androidx.compose.ui.graphics.Color
 
+fun getKawhi(): Gif{
+    return Gif("Gamewinner_Kawhi",R.drawable.gamewinner_kawhi, Level.Rookie,"#ffffff".color)
+}
+
+fun getLuka(): Gif{
+  return  Gif("Luka between Back Step back", R.drawable.lukastepback_1x1_v3, Level.Pro,"#7664C8".color)
+}
+
+fun getSkyHook() : Gif{
+    return Gif("kareem Sky Hook", R.drawable.kareem_abdul_jabbar_hookshot, Level.Rookie,"#522287".color)
+}
 
 fun createAllDiffs(): List<Gif> {
 
@@ -27,11 +38,13 @@ fun createAllDiffs(): List<Gif> {
     // Pro -> 9
     // Athlete 4
 
+
+
     return listOf(
         Gif("Durant-Crossover_PullUp", R.drawable.durant_against_giannes, Level.Rookie,"#453ec4".color),
         Gif("Lebron-DoubleBackStep", R.drawable.leborn_3_backstep, Level.Pro,"#ebaf3b".color),
         Gif("Duncan_BankShot", R.drawable.duncan_bankshot, Level.Rookie, "#956c7a".color),
-        Gif("kareem Hookshot", R.drawable.kareem_abdul_jabbar_hookshot, Level.Rookie,"#522287".color),
+        Gif("kareem Sky Hook", R.drawable.kareem_abdul_jabbar_hookshot, Level.Rookie,"#522287".color),
         Gif("curry_behindtheback_backstep", R.drawable.curry_behindtheback_backstep, Level.Pro,"#efa452".color),
         Gif("Jorden-Fade-Away", R.drawable.mj_fadeaway, Level.Pro,"#ffffff".color),
 

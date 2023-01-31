@@ -93,6 +93,8 @@ val all_pr : List<Int> = listOf<Int>(
     R.drawable.a6,
     R.drawable.a7,
     R.drawable.a8,
+    R.drawable.a9,
+    R.drawable.a10,
 
 
     )
