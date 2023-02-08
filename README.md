@@ -15,9 +15,12 @@ Die Animierten Basketball Gifs sind alle von WALKERTKL http://www.walkertkl.com/
 [Eine kleine Anleitung meiner APP](https://www.youtube.com/watch?v=ivaNKgt_EUg)
 
 Userpermisions die im Android Manifest angegeben werden müssen
- ---
- <uses-permission android:name="android.permission.INTERNET"/>
- <uses-permission android:name="android.permission.CAMERA"/>
- <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
- <uses-feature android:name="android.permission.camera.any"/>
- ---
+
+uses-permission android:name="android.permission.INTERNET"
+
+uses-permission android:name="android.permission.CAMERA"
+
+uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+
+uses-feature android:name="android.permission.camera.any
+
