@@ -178,7 +178,7 @@ fun createIcons(
                         navController.navigate(Screen.GameScreen.route)
                     }
                 } else if (item.function == "Home") {
-                    //#TODO
+                    navController.navigate(Screen.StartScreen.route)
                 } else if (item.function == "MissShot") {
                     sharedViewModel.brickShot()
                     print("BrickShoot")
