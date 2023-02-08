@@ -8,8 +8,11 @@ import android.content.ContextWrapper
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.net.Uri
+import android.webkit.WebView
+import android.webkit.WebViewClient
 import androidx.compose.runtime.*
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.viewinterop.AndroidView
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -67,27 +70,31 @@ fun Navigation(playerViewModel : PlayerViewModel) {
 
 
         composable(route = Screen.LinkedIn.route){
-            val context = LocalContext.current
-            val intent = remember { Intent(Intent.ACTION_VIEW, Uri.parse("https://www.linkedin.com/in/ben-riegel-220b33173/")) }
-            context.startActivity(intent)
+          //  val context = LocalContext.current
+         //   val intent = remember { Intent(Intent.ACTION_VIEW, Uri.parse("https://www.linkedin.com/in/ben-riegel-220b33173/")) }
+           // context.startActivity(intent)
+            WebV(context = LocalContext.current, url = "https://de.linkedin.com/in/ben-riegel-220b33173")
         }
 
         composable(route = Screen.Twitter.route){
-            val context = LocalContext.current
-            val intent = remember { Intent(Intent.ACTION_VIEW, Uri.parse("https://twitter.com/DrSchokoriegel")) }
-            context.startActivity(intent)
+         //   val context = LocalContext.current
+         //   val intent = remember { Intent(Intent.ACTION_VIEW, Uri.parse("https://twitter.com/DrSchokoriegel")) }
+       //     context.startActivity(intent)
+            WebV(context = LocalContext.current, url = "https://twitter.com/DrSchokoriegel")
         }
         composable(route = Screen.Video.route){
             val context = LocalContext.current
             val intent = remember { Intent(Intent.ACTION_VIEW, Uri.parse("https://youtu.be/ivaNKgt_EUg")) }
             context.startActivity(intent)
+      //      WebV(context = LocalContext.current, url = "https://youtu.be/ivaNKgt_EUg")
         }
 
 
         composable(route = Screen.Github.route){
-            val context = LocalContext.current
-            val intent = remember { Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/BenSchokoRiegel?tab=overview&from=2023-01-01&to=2023-01-23")) }
-            context.startActivity(intent)
+         //   val context = LocalContext.current
+         //   val intent = remember { Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/BenSchokoRiegel?tab=overview&from=2023-01-01&to=2023-01-23")) }
+          //  context.startActivity(intent)
+            WebV(context = LocalContext.current, url = "https://github.com/BenSchokoRiegel")
         }
 
         composable(route = Screen.Winner.route){
@@ -99,6 +106,17 @@ fun Navigation(playerViewModel : PlayerViewModel) {
 //        }
 
     }
+}
+// Quelle Gruppe 2
+@Composable
+fun WebV(context: Context,url:String){
+     AndroidView(factory = {
+         WebView(context).apply {
+             webViewClient = WebViewClient()
+             loadUrl(url)
+         }
+
+     })
 }
 
 
