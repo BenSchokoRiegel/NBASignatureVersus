@@ -35,8 +35,9 @@ class SharedViewModel : ViewModel() {
         gameScore.hasStarted = false
         gameScore.player1_score = 0
         gameScore.player2_score = 0
-        currentGif = getTheGifForPlayer()
         gameScore.player1_turn = Random.nextBoolean()
+        currentGif = getTheGifForPlayer()
+
     }
 
 
